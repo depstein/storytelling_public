@@ -5,14 +5,18 @@ import { SettingsPage } from '../pages/settings/settings';
 import { WritePage } from '../pages/write/write';
 import { ViewPage } from '../pages/view/view';
 import { TabsPage } from '../pages/tabs/tabs';
+import { CDVPhotoLibraryPipe } from '../providers/cdvphotolibrary.pipe';
 
 @NgModule({
   declarations: [
+    //Pages
     MyApp,
     SettingsPage,
     WritePage,
     ViewPage,
-    TabsPage
+    TabsPage,
+    //Providers
+    CDVPhotoLibraryPipe,
   ],
   imports: [
     IonicModule.forRoot(MyApp)

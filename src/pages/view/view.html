@@ -16,12 +16,17 @@
 <ion-content padding>
 <h1>Here would lie a view of the story.</h1>
 
+<button ion-button (click)="tryRequestAuthorization()">Permissions</button>
+
 <ion-card>
   <ion-card-header>
     Header 1
   </ion-card-header>
   <ion-card-content>
     Here's the first card.
+    <div *ngIf="imageUrl">
+    <img [src]="imageUrl | cdvphotolibrary">
+  </div>
   </ion-card-content>
 </ion-card>
 

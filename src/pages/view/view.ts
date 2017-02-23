@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
+import { LocalPhotos } from '../../providers/local-photos';
 
 /*
   Generated class for the View page.
@@ -7,17 +8,28 @@ import { NavController, NavParams } from 'ionic-angular';
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+
 @Component({
   selector: 'page-view',
-  templateUrl: 'view.html'
+  templateUrl: 'view.html',
+  providers: [ LocalPhotos ]
 })
 export class ViewPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  imageUrl: string = 'assets/img/4096.png';
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform, private photos:LocalPhotos) {
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ViewPage');
+  }
+
+  tryRequestAuthorization() {
+    this.photos.getPhoto((photoUrl) => {
+      this.imageUrl = photoUrl;
+    })
   }
 
 }
