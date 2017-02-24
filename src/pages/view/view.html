@@ -14,14 +14,26 @@
 
 
 <ion-content padding>
-<h1>Here would lie a view of the story.</h1>
+  <h1>Here would lie a view of the story.</h1>
 
-<button ion-button (click)="tryRequestAuthorization()">Permissions</button>
-
-<ion-list [virtualScroll]="allImages" approxItemHeight="400px">
-  <ion-card *virtualItem="let item" style="height:500px">
-      <!--This should supposedly be an ion-img. I couldn't get it to load... so hopefully this works out fine.-->
-      <img [src]="item.thumbnailURL | cdvphotolibrary" width="512" height="384">
-  </ion-card>
-</ion-list>
+  <button ion-button (click)="tryRequestAuthorization()">Permissions</button>
+  <form (ngSubmit)="logForm()">
+    <ion-list [virtualScroll]="allImages" approxItemHeight="100px">
+      <ion-item *virtualItem="let item" style="height:100px">
+        <ion-thumbnail item-right>
+          <!--This should supposedly be an ion-img. I couldn't get it to load... so hopefully this doesn't come back to bite me later.-->
+          <img [src]="item.thumbnailURL | cdvphotolibrary">
+        </ion-thumbnail>
+        <ion-label>
+          {{item.timestamp}}
+        </ion-label>
+        <ion-checkbox [(ngModel)]="formValues[item.id]" name="formValues.pictures"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+    <ion-footer>
+      <ion-toolbar>
+        <button ion-button full type="submit">Next</button>
+      </ion-toolbar>
+    </ion-footer>
+  </form>
 </ion-content>

@@ -17,6 +17,7 @@ import { LocalPhotos } from '../../providers/local-photos';
 export class ViewPage {
 
   allImages: any = [];
+  formValues: any = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform, private photos:LocalPhotos) {
     
@@ -28,6 +29,10 @@ export class ViewPage {
 
   tryRequestAuthorization() {
     this.allImages = this.photos.getPhotos();
+  }
+
+  logForm() {
+    console.log(JSON.stringify(this.formValues));
   }
 
 }
