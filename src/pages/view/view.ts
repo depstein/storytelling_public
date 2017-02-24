@@ -16,7 +16,7 @@ import { LocalPhotos } from '../../providers/local-photos';
 })
 export class ViewPage {
 
-  imageUrl: string = 'assets/img/4096.png';
+  allImages: any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform, private photos:LocalPhotos) {
     
@@ -27,9 +27,7 @@ export class ViewPage {
   }
 
   tryRequestAuthorization() {
-    this.photos.getPhoto((photoUrl) => {
-      this.imageUrl = photoUrl;
-    })
+    this.allImages = this.photos.getPhotos();
   }
 
 }

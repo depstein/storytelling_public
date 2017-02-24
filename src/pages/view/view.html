@@ -18,24 +18,10 @@
 
 <button ion-button (click)="tryRequestAuthorization()">Permissions</button>
 
-<ion-card>
-  <ion-card-header>
-    Header 1
-  </ion-card-header>
-  <ion-card-content>
-    Here's the first card.
-    <div *ngIf="imageUrl">
-    <img [src]="imageUrl | cdvphotolibrary">
-  </div>
-  </ion-card-content>
-</ion-card>
-
-<ion-card>
-  <ion-card-header>
-    Header 2
-  </ion-card-header>
-  <ion-card-content>
-    Here's the second card.
-  </ion-card-content>
-</ion-card>
+<ion-list [virtualScroll]="allImages" approxItemHeight="400px">
+  <ion-card *virtualItem="let item" style="height:500px">
+      <!--This should supposedly be an ion-img. I couldn't get it to load... so hopefully this works out fine.-->
+      <img [src]="item.thumbnailURL | cdvphotolibrary" width="512" height="384">
+  </ion-card>
+</ion-list>
 </ion-content>

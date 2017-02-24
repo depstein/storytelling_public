@@ -12,34 +12,33 @@ declare var cordova;
 
 @Injectable()
 export class LocalPhotos {
+  photoData:any = [];
 
   constructor(private platform : Platform) {
-  }
+    this.photoData = [{thumbnailURL: 'assets/img/gameshot.png'}, {thumbnailURL: 'assets/img/gameshot.png'}, {thumbnailURL: 'assets/img/gameshot.png'}];
 
-  getPhoto(callback) {
     this.platform.ready().then(() => {
       //If we're on mobile, call cordova
       if(this.platform.is('mobile')) {
         cordova.plugins.photoLibrary.requestAuthorization( () => {
         cordova.plugins.photoLibrary.getLibrary(
           (library) => {
-            library.library.forEach((libraryItem) => {
-              callback(libraryItem.thumbnailURL);
-            });
+            this.photoData = library.library;
           },
           (err) => {
             console.log('didn\'t get library successfully');
-            callback('assets/img/gameshot.png');
           }, { thumbnailWidth: 512, thumbnailHeight: 384, quality: 0.8}
           );
         }, (err) => {
           console.log('no permission');
-          callback('assets/img/gameshot.png');
         }, {read: true});
-      } else { //Otherwise, return a static file.
-        callback('assets/img/gameshot.png');
+      } else { //Otherwise, there's nothing to update.
       }
     });
+  }
+
+  getPhotos() {
+    return this.photoData;
   }
 
 }
