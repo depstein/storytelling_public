@@ -6,6 +6,7 @@ export class ChapterData {
     timestamp:any; //TODO: should this field be private, since photos/whatever will each have their own moments?
     id:string;
     photos:PhotoData[] = [];
+    textDescription:string;
 
     constructor(){
      this.id = shortid.generate();
@@ -18,5 +19,9 @@ export class ChapterData {
         photos.forEach((photo) => {
             this.timestamp = moment.max(this.timestamp, photo.timestamp);
         });
+    }
+
+    addTextDescription(textDescription:string) {
+        this.textDescription = textDescription;
     }
 }

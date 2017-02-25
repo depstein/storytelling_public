@@ -7,12 +7,28 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>AddDetail</ion-title>
+    <ion-title>What other detail would you like to add?</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <button ion-button icon-left (click)="openTextDescription()">
+    <ion-icon name="list"></ion-icon>
+    Text Description
+  </button>
+  <button ion-button icon-left>
+    <ion-icon name="cash"></ion-icon>
+    Expenses
+  </button>
+  <button ion-button icon-left>
+    <ion-icon name="navigate"></ion-icon>
+    Place Visited
+  </button>
+  <button ion-button icon-left>
+    <ion-icon name="happy"></ion-icon>
+    Emotion
+  </button>
   <ion-item>{{chapterData.id}}</ion-item>
 </ion-content>
