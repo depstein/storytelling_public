@@ -4,6 +4,7 @@ import { MyApp } from './app.component';
 import { SettingsPage } from '../pages/settings/settings';
 import { WritePage } from '../pages/write/write';
 import { ViewPage } from '../pages/view/view';
+import { AddDetailPage } from '../pages/add-detail/add-detail';
 import { TabsPage } from '../pages/tabs/tabs';
 import { CDVPhotoLibraryPipe } from '../providers/cdvphotolibrary.pipe';
 
@@ -12,6 +13,7 @@ import { CDVPhotoLibraryPipe } from '../providers/cdvphotolibrary.pipe';
     //Pages
     MyApp,
     SettingsPage,
+    AddDetailPage,
     WritePage,
     ViewPage,
     TabsPage,
@@ -24,6 +26,7 @@ import { CDVPhotoLibraryPipe } from '../providers/cdvphotolibrary.pipe';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    AddDetailPage,
     SettingsPage,
     WritePage,
     ViewPage,
