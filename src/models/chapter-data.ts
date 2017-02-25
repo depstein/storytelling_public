@@ -7,6 +7,8 @@ export class ChapterData {
     id:string;
     photos:PhotoData[] = [];
     textDescription:string;
+    expenses:number;
+    emotion:string; //TODO: make this more complicated eventually, probably it's own object
 
     constructor(){
      this.id = shortid.generate();
@@ -23,5 +25,13 @@ export class ChapterData {
 
     addTextDescription(textDescription:string) {
         this.textDescription = textDescription;
+    }
+
+    addExpenses(expenses:number) {
+        this.expenses = expenses;
+    }
+
+    addEmotion(emotion:string) {
+        this.emotion = emotion;
     }
 }

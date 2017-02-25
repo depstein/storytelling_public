@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { ChapterData } from '../../models/chapter-data';
 import { AddTextDescriptionPage } from '../add-text-description/add-text-description';
+import { AddExpensesPage } from '../add-expenses/add-expenses';
+import { AddEmotionPage } from '../add-emotion/add-emotion';
 
 /*
   Generated class for the AddDetail page.
@@ -32,6 +34,22 @@ export class AddDetailPage {
     let modal = this.modalCtrl.create(AddTextDescriptionPage);
     modal.onDidDismiss(data => {
       this.chapterData.addTextDescription(data);
+    })
+    modal.present();
+  }
+
+  openExpenses() {
+    let modal = this.modalCtrl.create(AddExpensesPage);
+    modal.onDidDismiss(data => {
+      this.chapterData.addExpenses(data);
+    })
+    modal.present();
+  }
+
+  openEmotion() {
+    let modal = this.modalCtrl.create(AddEmotionPage);
+    modal.onDidDismiss(data => {
+      this.chapterData.addEmotion(data);
     })
     modal.present();
   }
