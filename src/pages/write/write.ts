@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
 import { LocalPhotos } from '../../providers/local-photos';
 import { AddDetailPage } from '../add-detail/add-detail';
 import { ChapterData } from '../../models/chapter-data';
@@ -21,11 +21,18 @@ export class WritePage {
   allImages: PhotoData[] = [];
   formValues: any = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private photos : LocalPhotos) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public platform:Platform, private photos : LocalPhotos) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad WritePage');
-    this.allImages = this.photos.getPhotos();
+    this.platform.ready().then(() => {
+      console.log('ionViewDidLoad WritePage');
+      this.photos.getPhotos().then((photos:PhotoData[]) => {
+        this.allImages = photos;
+        console.log(this.allImages);
+      }, (error) => {
+        console.log(error);
+      });
+    });
   }
 
   logForm() {
