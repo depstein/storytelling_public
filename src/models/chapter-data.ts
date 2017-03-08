@@ -1,6 +1,7 @@
 import * as moment from 'moment';
 import * as shortid from 'shortid';
 import { PhotoData } from './photo-data';
+import { RunningData } from './running-data';
 
 export class ChapterData {
     timestamp:any; //TODO: should this field be private, since photos/whatever will each have their own moments?
