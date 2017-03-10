@@ -1,0 +1,35 @@
+<!--
+  Generated template for the WriteDiy page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>WriteDiy</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h2>Storytellr</h2>
+  <form (ngSubmit)="logForm()">
+    <ion-list [virtualScroll]="allImages" approxItemHeight="100px">
+      <ion-item *virtualItem="let item" style="height:100px">
+        <ion-thumbnail item-right>
+          <!--This should supposedly be an ion-img. I couldn't get it to load... so hopefully this doesn't come back to bite me later.-->
+          <img [src]="item.pictureURL | cdvphotolibrary">
+        </ion-thumbnail>
+        <ion-label>
+          {{item.timestamp}}
+        </ion-label>
+        <ion-checkbox [(ngModel)]="formValues[item.id]" name="formValues.pictures"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+    <ion-toolbar position="bottom">
+      <button ion-button full type="submit">Next</button>
+    </ion-toolbar>
+  </form>
+</ion-content>

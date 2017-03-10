@@ -8,6 +8,8 @@ import { AddDetailPage } from '../pages/add-detail/add-detail';
 import { AddTextDescriptionPage } from '../pages/add-text-description/add-text-description';
 import { AddExpensesPage } from '../pages/add-expenses/add-expenses';
 import { AddEmotionPage } from '../pages/add-emotion/add-emotion';
+import { WriteDiyPage } from '../pages/write-diy/write-diy';
+import { WriteRunningPage } from '../pages/write-running/write-running';
 import { TabsPage } from '../pages/tabs/tabs';
 import { CDVPhotoLibraryPipe } from '../providers/cdvphotolibrary.pipe';
 
@@ -23,6 +25,8 @@ import { CDVPhotoLibraryPipe } from '../providers/cdvphotolibrary.pipe';
     WritePage,
     ViewPage,
     TabsPage,
+    WriteDiyPage,
+    WriteRunningPage,
     //Providers
     CDVPhotoLibraryPipe,
   ],
@@ -39,6 +43,8 @@ import { CDVPhotoLibraryPipe } from '../providers/cdvphotolibrary.pipe';
     SettingsPage,
     WritePage,
     ViewPage,
+    WriteDiyPage,
+    WriteRunningPage,
     TabsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]

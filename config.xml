@@ -9,6 +9,7 @@
   <allow-navigation href="http://128.208.7.208:8100"/>
   <allow-navigation href="http://108.179.179.166:8100"/>
   <allow-navigation href="http://192.168.0.3:8100"/>
+  <allow-navigation href="http://128.208.7.142:8100"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
   <allow-intent href="tel:*"/>
@@ -41,5 +42,8 @@
   <plugin name="cordova-plugin-splashscreen" spec="~4.0.1"/>
   <plugin name="cordova-plugin-photo-library" spec="~2.0.2">
     <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="To choose photos"/>
+  </plugin>
+  <plugin name="cordova-plugin-mapbox" spec="~1.2.3">
+    <variable name="ACCESS_TOKEN" value="pk.eyJ1IjoiZGVwc3RlaW4iLCJhIjoiY2owMWpnOXN5MDF1OTMycW52bGg1bnludyJ9.ss9hA0RVl_2P9UuOtMLZvQ"/>
   </plugin>
 </widget>
