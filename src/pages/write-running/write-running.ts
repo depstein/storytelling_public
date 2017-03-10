@@ -46,9 +46,9 @@ export class WriteRunningPage {
 
   showMap() {
     this.platform.ready().then(() => {
-      for(let r of this.allRuns) {
-        r.getMap();
-      }
+      // for(let r of this.allRuns) {
+      //   r.getDynamicMap();
+      // }
     });
   }
 

@@ -12,6 +12,7 @@ export class RunningData {
   coordinates:any = null;
   bounds:any = null;
   map:any = null;
+  staticMapUrl:string = null;
 
   public static decodePolyline(map_polyline:string) {
     //For reasons I can't explain, latitude and longitude are flipped.
@@ -29,6 +30,8 @@ export class RunningData {
     this.map_polyline = map_polyline;
     this.coordinates = RunningData.decodePolyline(map_polyline);
     this.duration = duration;
+    console.log(encodeURI(this.map_polyline));
+    this.staticMapUrl = "https://api.mapbox.com/styles/v1/mapbox/streets-v9/static/path-5+f44-0.5+f44-0.2(" + encodeURIComponent(this.map_polyline) + ")/auto/100x100?access_token=pk.eyJ1IjoiZGVwc3RlaW4iLCJhIjoiY2owMWpnOXN5MDF1OTMycW52bGg1bnludyJ9.ss9hA0RVl_2P9UuOtMLZvQ"
   }
 
   getBounds() {
@@ -46,7 +49,9 @@ export class RunningData {
     return this.coordinates[0];
   }
 
-  getMap() {
+  //Puts a dynamic map in the div specified by this map's ID.
+  //TODO: this will almost certainly crash as I move the token around and do all sorts of weird things.
+  getDynamicMap() {
     if(this.map != null) {
       return this.map;
     }

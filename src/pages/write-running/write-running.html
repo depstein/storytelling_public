@@ -16,7 +16,11 @@
 <ion-content padding>
   <ion-list [virtualScroll]="allRuns" approxItemHeight="100px">
     <ion-item *virtualItem="let item" style="height:100px">
-      <div item-right [id]="item.id" style='width: 200px; height:100px;'></div>
+      <ion-thumbnail item-right>
+        <!--This should supposedly be an ion-img. I couldn't get it to load... so hopefully this doesn't come back to bite me later.-->
+        <img [src]="item.staticMapUrl">
+      </ion-thumbnail>
+      <!--<div item-right [id]="item.id" style='width: 200px; height:100px;'></div>-->
       <ion-label>
         {{item.timestamp}}
       </ion-label>
