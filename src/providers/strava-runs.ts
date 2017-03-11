@@ -27,13 +27,21 @@ export class StravaRuns {
       this.http.get('assets/data/running_data.json').subscribe(res => {
         var runs:RunningData[] = [];
         var runLogs = res.json();
-        console.log(runLogs);
         for(var i=0;i<runLogs.length;i++) {
           runs.push(this.runDatumFromRun(runLogs[i]['id'], runLogs[i]['timestamp'], runLogs[i]['distance'], runLogs[i]['map_polyline'], runLogs[i]['duration']));
         }
         resolve(runs);
       })
     });
+  }
+
+  getRunFromId(id:string) {
+    for(let r of this.runningData) {
+      if(r.id == id) {
+        return r;
+      }
+    }
+    return null;
   }
 
   getRuns() {

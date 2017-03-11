@@ -30,8 +30,7 @@ export class RunningData {
     this.map_polyline = map_polyline;
     this.coordinates = RunningData.decodePolyline(map_polyline);
     this.duration = duration;
-    console.log(encodeURI(this.map_polyline));
-    this.staticMapUrl = "https://api.mapbox.com/styles/v1/mapbox/streets-v9/static/path-5+f44-0.5+f44-0.2(" + encodeURIComponent(this.map_polyline) + ")/auto/100x100?access_token=pk.eyJ1IjoiZGVwc3RlaW4iLCJhIjoiY2owMWpnOXN5MDF1OTMycW52bGg1bnludyJ9.ss9hA0RVl_2P9UuOtMLZvQ"
+    this.staticMapUrl = "https://api.mapbox.com/styles/v1/mapbox/streets-v9/static/path-5+f44-0.5+f44-0.2(" + encodeURIComponent(this.map_polyline) + ")/auto/100x100?access_token=pk.eyJ1IjoiZGVwc3RlaW4iLCJhIjoiY2owMWpnOXN5MDF1OTMycW52bGg1bnludyJ9.ss9hA0RVl_2P9UuOtMLZvQ";
   }
 
   getBounds() {

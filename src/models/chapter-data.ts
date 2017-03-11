@@ -7,6 +7,7 @@ export class ChapterData {
     timestamp:any; //TODO: should this field be private, since photos/whatever will each have their own moments?
     id:string;
     photos:PhotoData[] = [];
+    run:RunningData = null;
     textDescription:string;
     expenses:number;
     emotion:string; //TODO: make this more complicated eventually, probably it's own object
@@ -22,6 +23,11 @@ export class ChapterData {
         photos.forEach((photo) => {
             this.timestamp = moment.max(this.timestamp, photo.timestamp);
         });
+    }
+
+    addRun(run:RunningData) {
+        this.run = run;
+        this.timestamp = this.run.timestamp;
     }
 
     addTextDescription(textDescription:string) {

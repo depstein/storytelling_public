@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
+import { AddDetailPage } from '../add-detail/add-detail';
+import { ChapterData } from '../../models/chapter-data';
 import { RunningData } from '../../models/running-data';
 import { StravaRuns } from '../../providers/strava-runs';
 
@@ -32,7 +34,7 @@ export class WriteRunningPage {
       this.runs.getRuns().then((runs:RunningData[]) => {
           this.allRuns = runs;
           console.log(this.allRuns);
-        })
+        });
     });
   }
 
@@ -57,7 +59,9 @@ export class WriteRunningPage {
   }
 
   logForm() {
-    
+    let chapterData: ChapterData = new ChapterData();
+    chapterData.addRun(this.runs.getRunFromId(this.formValues['run']));
+    this.navCtrl.push(AddDetailPage, {chapterData:chapterData});
   }
 
 }
