@@ -7,7 +7,6 @@ export class CDVPhotoLibraryPipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) {}
 
   transform(url: string) {
-  	console.log(url);
     return url.startsWith('cdvphotolibrary://') ? this.sanitizer.bypassSecurityTrustUrl(url) : url;
   }
 }

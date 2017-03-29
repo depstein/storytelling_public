@@ -21,11 +21,9 @@ export class ReviewChapterPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private dataStore:DataStorage) {
     this.chapterData = this.navParams.get("chapterData");
-    console.log(this.chapterData);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ReviewChapterPage');
   }
 
   completeChapter() {

@@ -18,7 +18,6 @@ export class DataStorage {
   static runIds:{} = {};
 
   constructor(public http: Http) {
-    console.log('Hello DataStorage Provider');
   }
 
   getAllChapters() {
@@ -28,7 +27,6 @@ export class DataStorage {
   }
 
   photoIdExists(id) {
-    console.log(DataStorage.photoIds[id] === true);
     return DataStorage.photoIds[id] === true;
   }
 

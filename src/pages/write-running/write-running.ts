@@ -30,11 +30,9 @@ export class WriteRunningPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad WriteRunningPage');
     this.platform.ready().then(() => {
       this.runs.getRuns().then((runs:RunningData[]) => {
           this.allRuns = runs;
-          console.log(this.allRuns);
         });
     });
   }

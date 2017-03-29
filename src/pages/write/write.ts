@@ -19,7 +19,6 @@ export class WritePage {
 
   ionViewDidLoad() {
     this.platform.ready().then(() => {
-      console.log('ionViewDidLoad WritePage');
     });
   }
 

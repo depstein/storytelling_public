@@ -28,7 +28,6 @@ export class AddDetailPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AddDetailPage');
   }
 
   openTextDescription() {

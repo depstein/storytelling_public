@@ -26,10 +26,8 @@ export class WriteDiyPage {
 
   ionViewDidLoad() {
     this.platform.ready().then(() => {
-      console.log('ionViewDidLoad WritePage');
       this.photos.getPhotos().then((photos:PhotoData[]) => {
         this.allImages = photos;
-        console.log(this.allImages);
       }, (error) => {
         console.log(error);
       });
