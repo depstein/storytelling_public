@@ -24,7 +24,7 @@
       <ion-label>
         {{item.timestamp}}
       </ion-label>
-      <ion-radio item-left [value]="item.id"></ion-radio>
+      <ion-radio item-left [value]="item.id" [disabled]="isDisabled(item.id)"></ion-radio>
     </ion-item>
   </ion-list>
   <ion-toolbar position="bottom">
