@@ -14,21 +14,19 @@
 
 
 <ion-content padding>
-  <form (ngSubmit)="logForm()">
-    <ion-list [virtualScroll]="allImages" approxItemHeight="100px">
-      <ion-item *virtualItem="let item" style="height:100px">
-        <ion-thumbnail item-right>
-          <!--This should supposedly be an ion-img. I couldn't get it to load... so hopefully this doesn't come back to bite me later.-->
-          <img [src]="item.pictureURL | cdvphotolibrary">
-        </ion-thumbnail>
-        <ion-label>
-          {{item.timestamp}}
-        </ion-label>
-        <ion-checkbox [(ngModel)]="formValues[item.id]" [disabled]="isDisabled(item.id)" name="formValues.pictures"></ion-checkbox>
-      </ion-item>
-    </ion-list>
-    <ion-toolbar position="bottom">
-      <button ion-button full type="submit">Next</button>
-    </ion-toolbar>
-  </form>
+  <ion-list [virtualScroll]="allImages" approxItemHeight="100px">
+    <ion-item *virtualItem="let item" style="height:100px">
+      <ion-thumbnail item-right>
+        <!--This should supposedly be an ion-img. I couldn't get it to load... so hopefully this doesn't come back to bite me later.-->
+        <img [src]="item.pictureURL | cdvphotolibrary">
+      </ion-thumbnail>
+      <ion-label>
+        {{item.timestamp}}
+      </ion-label>
+      <ion-checkbox [(ngModel)]="formValues[item.id]" [disabled]="isDisabled(item.id)" name="formValues.pictures"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <ion-toolbar position="bottom">
+    <button ion-button full type="submit" (click)="logForm()">Next</button>
+  </ion-toolbar>
 </ion-content>

@@ -14,23 +14,20 @@
 
 
 <ion-content padding>
-  <h2>Storytellr</h2>
-  <form (ngSubmit)="logForm()">
-    <ion-list radio-group [(ngModel)]="formValues.run" name="run" [virtualScroll]="allRuns" approxItemHeight="100px">
-      <ion-item *virtualItem="let item" style="height:100px">
-        <ion-thumbnail item-right>
-          <!--This should supposedly be an ion-img. I couldn't get it to load... so hopefully this doesn't come back to bite me later.-->
-          <img [src]="item.staticMapUrl">
-        </ion-thumbnail>
-        <!--<div item-right [id]="item.id" style='width: 200px; height:100px;'></div>-->
-        <ion-label>
-          {{item.timestamp}}
-        </ion-label>
-        <ion-radio item-left [value]="item.id"></ion-radio>
-      </ion-item>
-    </ion-list>
-    <ion-toolbar position="bottom">
-      <button ion-button full type="submit">Next</button>
-    </ion-toolbar>
-  </form>
+  <ion-list radio-group [(ngModel)]="formValues.run" name="run" [virtualScroll]="allRuns" approxItemHeight="100px">
+    <ion-item *virtualItem="let item" style="height:100px">
+      <ion-thumbnail item-right>
+        <!--This should supposedly be an ion-img. I couldn't get it to load... so hopefully this doesn't come back to bite me later.-->
+        <img [src]="item.staticMapUrl">
+      </ion-thumbnail>
+      <!--<div item-right [id]="item.id" style='width: 200px; height:100px;'></div>-->
+      <ion-label>
+        {{item.timestamp}}
+      </ion-label>
+      <ion-radio item-left [value]="item.id"></ion-radio>
+    </ion-item>
+  </ion-list>
+  <ion-toolbar position="bottom">
+    <button ion-button full type="submit" (click)="logForm()">Next</button>
+  </ion-toolbar>
 </ion-content>
