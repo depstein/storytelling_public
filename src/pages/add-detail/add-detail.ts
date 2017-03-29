@@ -4,6 +4,7 @@ import { ChapterData } from '../../models/chapter-data';
 import { AddTextDescriptionPage } from '../add-text-description/add-text-description';
 import { AddExpensesPage } from '../add-expenses/add-expenses';
 import { AddEmotionPage } from '../add-emotion/add-emotion';
+import { ReviewChapterPage } from '../review-chapter/review-chapter'
 
 /*
   Generated class for the AddDetail page.
@@ -52,6 +53,10 @@ export class AddDetailPage {
       this.chapterData.addEmotion(data);
     })
     modal.present();
+  }
+
+  reviewChapter() {
+    this.navCtrl.push(ReviewChapterPage, {chapterData:this.chapterData});
   }
 
 }

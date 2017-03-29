@@ -1,0 +1,28 @@
+<!--
+  Generated template for the ViewChapter component.
+
+  See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
+  for more info on Angular 2 Components.
+-->
+
+<ion-item>
+  {{chapterData.timestamp}}
+</ion-item>
+<ion-item *ngIf="chapterData.run != null">
+  <img [src]="chapterData.run.staticMapUrl">
+  {{chapterData.run.distance}}
+</ion-item>
+<ion-slides *ngIf="chapterData.photos != null">
+  <ion-slide *ngFor="let item of chapterData.photos">
+    <img [src]="item.pictureURL | cdvphotolibrary">
+  </ion-slide>
+</ion-slides>
+<ion-item *ngIf="chapterData.textDescription != null">
+  {{chapterData.textDescription}}
+</ion-item>
+<ion-item *ngIf="chapterData.expenses != null">
+  {{chapterData.expenses}}
+</ion-item>
+<ion-item *ngIf="chapterData.emotion != null">
+  {{chapterData.emotion}}
+</ion-item>

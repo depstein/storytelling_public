@@ -6,11 +6,11 @@ import { RunningData } from './running-data';
 export class ChapterData {
     timestamp:any; //TODO: should this field be private, since photos/whatever will each have their own moments?
     id:string;
-    photos:PhotoData[] = [];
+    photos:PhotoData[] = null;
     run:RunningData = null;
-    textDescription:string;
-    expenses:number;
-    emotion:string; //TODO: make this more complicated eventually, probably it's own object
+    textDescription:string = null;
+    expenses:number = null;
+    emotion:string = null; //TODO: make this more complicated eventually, probably it's own object
 
     constructor(){
      this.id = shortid.generate();

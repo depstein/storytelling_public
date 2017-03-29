@@ -10,6 +10,8 @@ import { AddExpensesPage } from '../pages/add-expenses/add-expenses';
 import { AddEmotionPage } from '../pages/add-emotion/add-emotion';
 import { WriteDiyPage } from '../pages/write-diy/write-diy';
 import { WriteRunningPage } from '../pages/write-running/write-running';
+import { ReviewChapterPage } from '../pages/review-chapter/review-chapter';
+import { ViewChapterComponent } from '../components/view-chapter/view-chapter';
 import { TabsPage } from '../pages/tabs/tabs';
 import { CDVPhotoLibraryPipe } from '../providers/cdvphotolibrary.pipe';
 
@@ -27,6 +29,9 @@ import { CDVPhotoLibraryPipe } from '../providers/cdvphotolibrary.pipe';
     TabsPage,
     WriteDiyPage,
     WriteRunningPage,
+    ReviewChapterPage,
+    //Components
+    ViewChapterComponent,
     //Providers
     CDVPhotoLibraryPipe,
   ],
@@ -45,7 +50,9 @@ import { CDVPhotoLibraryPipe } from '../providers/cdvphotolibrary.pipe';
     ViewPage,
     WriteDiyPage,
     WriteRunningPage,
-    TabsPage
+    ReviewChapterPage,
+    TabsPage,
+    ViewChapterComponent
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
