@@ -14,7 +14,6 @@
 
 
 <ion-content padding>
-  <h2>Storytellr</h2>
   <form (ngSubmit)="logForm()">
     <ion-list [virtualScroll]="allImages" approxItemHeight="100px">
       <ion-item *virtualItem="let item" style="height:100px">
@@ -25,7 +24,7 @@
         <ion-label>
           {{item.timestamp}}
         </ion-label>
-        <ion-checkbox [(ngModel)]="formValues[item.id]" name="formValues.pictures"></ion-checkbox>
+        <ion-checkbox [(ngModel)]="formValues[item.id]" [disabled]="isDisabled(item.id)" name="formValues.pictures"></ion-checkbox>
       </ion-item>
     </ion-list>
     <ion-toolbar position="bottom">

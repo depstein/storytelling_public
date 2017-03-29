@@ -55,6 +55,18 @@ export class AddDetailPage {
     modal.present();
   }
 
+  getTextDescriptionColor() {
+    return this.chapterData.textDescription ? "secondary" : "default";
+  }
+
+  getExpensesColor() {
+    return this.chapterData.expenses ? "secondary" : "default";
+  }
+
+  getEmotionColor() {
+    return this.chapterData.emotion ? "secondary" : "default";
+  }
+
   reviewChapter() {
     this.navCtrl.push(ReviewChapterPage, {chapterData:this.chapterData});
   }

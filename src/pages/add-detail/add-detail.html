@@ -14,11 +14,11 @@
 
 
 <ion-content padding>
-  <button ion-button icon-left (click)="openTextDescription()">
+  <button ion-button icon-left [color]="getTextDescriptionColor()" (click)="openTextDescription()">
     <ion-icon name="list"></ion-icon>
     Text Description
   </button>
-  <button ion-button icon-left (click)="openExpenses()">
+  <button ion-button icon-left [color]="getExpensesColor()" (click)="openExpenses()">
     <ion-icon name="cash"></ion-icon>
     Expenses
   </button>
@@ -26,7 +26,7 @@
     <ion-icon name="navigate"></ion-icon>
     Place Visited
   </button>
-  <button ion-button icon-left (click)="openEmotion()">
+  <button ion-button icon-left [color]="getEmotionColor()" (click)="openEmotion()">
     <ion-icon name="happy"></ion-icon>
     Emotion
   </button>

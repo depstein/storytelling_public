@@ -4,6 +4,7 @@ import { AddDetailPage } from '../add-detail/add-detail';
 import { ChapterData } from '../../models/chapter-data';
 import { RunningData } from '../../models/running-data';
 import { StravaRuns } from '../../providers/strava-runs';
+import { DataStorage } from '../../providers/data-storage';
 
 /*
   Generated class for the WriteRunning page.
@@ -16,13 +17,13 @@ declare var mapboxgl;
 @Component({
   selector: 'page-write-running',
   templateUrl: 'write-running.html',
-  providers: [ StravaRuns ]
+  providers: [ StravaRuns, DataStorage ]
 })
 export class WriteRunningPage {
   allRuns: RunningData[] = [];
   formValues: any = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform:Platform, private runs : StravaRuns) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public platform:Platform, private runs : StravaRuns, private dataStore:DataStorage) {
     //TODO: possibly load this from a file, or something more scretive...
     //Checking into the repository because lazy.
     mapboxgl.accessToken = 'pk.eyJ1IjoiZGVwc3RlaW4iLCJhIjoiY2owMWpnOXN5MDF1OTMycW52bGg1bnludyJ9.ss9hA0RVl_2P9UuOtMLZvQ';
@@ -56,6 +57,10 @@ export class WriteRunningPage {
 
   hideMap() {
     
+  }
+
+  isDisabled(id) {
+    return this.dataStore.runIdExists(id);
   }
 
   logForm() {
