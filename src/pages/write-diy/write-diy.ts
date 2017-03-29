@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { LocalPhotos } from '../../providers/local-photos';
 import { AddDetailPage } from '../add-detail/add-detail';
-import { ViewMapPage } from '../view-map/view-map';
 import { ChapterData } from '../../models/chapter-data';
 import { PhotoData } from '../../models/photo-data';
 

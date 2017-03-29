@@ -14,7 +14,9 @@
 
 
 <ion-content padding>
-  <h1>Here would lie a view of the story.</h1>
-
+  <h1 *ngIf="chapters?.length == 0">There's nothing in your story right now. Go add something!</h1>
+  <ion-item *ngFor="let chapter of chapters">
+    <view-chapter [chapterData]="chapter"></view-chapter>
+  </ion-item>
   
 </ion-content>

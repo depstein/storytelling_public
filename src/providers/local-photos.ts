@@ -17,6 +17,7 @@ declare var cordova;
 //https://github.com/terikon/photo-library-demo-ionic2
 @Injectable()
 export class LocalPhotos {
+  //TODO: should this be static?
   photoData:PhotoData[] = [];
   //TODO: clearly 10 is too few, but getting all the images was a pretty drastic performance hit.
   maxPhotoNumber = 10;

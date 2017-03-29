@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ChapterData } from '../../models/chapter-data';
 import { ViewChapterComponent } from '../../components/view-chapter/view-chapter';
+import { DataStorage } from '../../providers/data-storage';
 
 /*
   Generated class for the ReviewChapter page.
@@ -11,19 +12,26 @@ import { ViewChapterComponent } from '../../components/view-chapter/view-chapter
 */
 @Component({
   selector: 'page-review-chapter',
-  templateUrl: 'review-chapter.html'
+  templateUrl: 'review-chapter.html',
+  providers: [ DataStorage ]
 })
 export class ReviewChapterPage {
   @Input('view-chapter') viewChapter: ViewChapterComponent;
   chapterData:ChapterData;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private dataStore:DataStorage) {
     this.chapterData = this.navParams.get("chapterData");
     console.log(this.chapterData);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReviewChapterPage');
+  }
+
+  completeChapter() {
+    this.dataStore.addChapter(this.chapterData);
+    this.navCtrl.popToRoot();
+    this.navCtrl.parent.select(1);
   }
 
 }

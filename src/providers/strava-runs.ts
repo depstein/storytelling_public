@@ -12,6 +12,7 @@ import { RunningData } from '../models/running-data';
 */
 @Injectable()
 export class StravaRuns {
+  //TODO: should this be static?
   runningData:RunningData[] = [];
 
   constructor(private platform : Platform, private http:Http) {}

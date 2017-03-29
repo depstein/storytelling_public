@@ -14,6 +14,7 @@ import { ReviewChapterPage } from '../pages/review-chapter/review-chapter';
 import { ViewChapterComponent } from '../components/view-chapter/view-chapter';
 import { TabsPage } from '../pages/tabs/tabs';
 import { CDVPhotoLibraryPipe } from '../providers/cdvphotolibrary.pipe';
+import { Storage } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,6 @@ import { CDVPhotoLibraryPipe } from '../providers/cdvphotolibrary.pipe';
     TabsPage,
     ViewChapterComponent
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Storage ]
 })
 export class AppModule {}
