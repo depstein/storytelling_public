@@ -45,7 +45,7 @@ export class LocalPhotos {
       cordova.plugins.photoLibrary.requestAuthorization( () => {
         cordova.plugins.photoLibrary.getLibrary(
           (library) => {
-            resolve(library.library.slice(0, this.maxPhotoNumber).map((photo) => {
+            resolve(library.library.reverse().slice(0, this.maxPhotoNumber).map((photo) => {
               return this.photoDatumFromPhoto(photo.id, moment(photo.creationDate), photo.thumbnailURL);
             }));
           },

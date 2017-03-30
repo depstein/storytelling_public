@@ -23,10 +23,17 @@
       <ion-label>
         {{item.timestamp}}
       </ion-label>
-      <ion-checkbox [(ngModel)]="formValues[item.id]" [disabled]="isDisabled(item.id)" name="formValues.pictures"></ion-checkbox>
+      <ion-checkbox [(ngModel)]="pictureIdsSelected[item.id]" [disabled]="isDisabled(item.id)" name="pictureIdsSelected.pictures"></ion-checkbox>
     </ion-item>
   </ion-list>
-  <ion-toolbar position="bottom">
-    <button ion-button full type="submit" (click)="logForm()">Next</button>
-  </ion-toolbar>
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar position="bottom">
+      <ion-item>
+        <ion-label color="primary">Minutes worked</ion-label>
+        <ion-input type="number" [(ngModel)]="minuteStr"></ion-input>
+      </ion-item>
+      <button ion-button full type="submit" (click)="logForm()">Next</button>
+    </ion-toolbar>
+</ion-footer>

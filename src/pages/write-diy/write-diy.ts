@@ -20,7 +20,8 @@ import { DataStorage } from '../../providers/data-storage';
 export class WriteDiyPage {
 
   allImages: PhotoData[] = [];
-  formValues: any = {};
+  pictureIdsSelected: any = {};
+  minutesWorked:number = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public platform:Platform, private photos : LocalPhotos, private dataStore:DataStorage) {}
 
@@ -38,9 +39,19 @@ export class WriteDiyPage {
     return this.dataStore.photoIdExists(id);
   }
 
+  //For reasons I don't understand, the data binding will revert to a string unless this is undertaken.
+  set minuteStr(s:string) {
+    this.minutesWorked = parseInt(s);
+  }
+
+  get minuteStr() {
+    return this.minutesWorked.toString();
+  }
+
   logForm() {
     let chapterData: ChapterData = new ChapterData();
-    chapterData.addPictures(this.photos.getPhotosFromIDs(Object.keys(this.formValues)));
+    chapterData.addMinutesWorked(this.minutesWorked);
+    chapterData.addPictures(this.photos.getPhotosFromIDs(Object.keys(this.pictureIdsSelected)));
     this.navCtrl.push(AddDetailPage, {chapterData:chapterData});
   }
 

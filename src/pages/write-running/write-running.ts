@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { AddDetailPage } from '../add-detail/add-detail';
 import { ChapterData } from '../../models/chapter-data';
@@ -21,9 +21,10 @@ declare var mapboxgl;
 })
 export class WriteRunningPage {
   allRuns: RunningData[] = [];
-  formValues: any = {};
+  runIdSelected: any = {};
+  distanceRan:number = 0;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform:Platform, private runs : StravaRuns, private dataStore:DataStorage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public platform:Platform, private runs : StravaRuns, private dataStore:DataStorage, private ngz:NgZone) {
     //TODO: possibly load this from a file, or something more scretive...
     //Checking into the repository because lazy.
     mapboxgl.accessToken = 'pk.eyJ1IjoiZGVwc3RlaW4iLCJhIjoiY2owMWpnOXN5MDF1OTMycW52bGg1bnludyJ9.ss9hA0RVl_2P9UuOtMLZvQ';
@@ -57,13 +58,29 @@ export class WriteRunningPage {
     
   }
 
+  selectedRun(id) {
+    //Ensure the data binding updates when a new run is clicked on.
+    this.ngz.run(() => this.distanceRan = this.runs.getRunFromId(id).distance);
+  }
+
+  //For reasons I don't understand, the data binding will revert to a string unless this is undertaken.
+  set distanceStr(s:string) {
+    this.distanceRan = parseFloat(s);
+  }
+
+  get distanceStr() {
+    return this.distanceRan.toString();
+  }
+
   isDisabled(id) {
     return this.dataStore.runIdExists(id);
   }
 
   logForm() {
     let chapterData: ChapterData = new ChapterData();
-    chapterData.addRun(this.runs.getRunFromId(this.formValues['run']));
+    let run:RunningData = this.runs.getRunFromId(this.runIdSelected['run']);
+    run.distance = this.distanceRan; //In case the distance entered is is different
+    chapterData.addRun(run);
     this.navCtrl.push(AddDetailPage, {chapterData:chapterData});
   }
 

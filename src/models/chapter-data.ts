@@ -9,6 +9,7 @@ export class ChapterData {
     photos:PhotoData[] = null;
     run:RunningData = null;
     textDescription:string = null;
+    minutesWorked:number = 0;
     expenses:number = null;
     emotion:string = null; //TODO: make this more complicated eventually, probably it's own object
 
@@ -23,6 +24,10 @@ export class ChapterData {
         photos.forEach((photo) => {
             this.timestamp = moment.max(this.timestamp, photo.timestamp);
         });
+    }
+
+    addMinutesWorked(minutes:number) {
+        this.minutesWorked = minutes;
     }
 
     addRun(run:RunningData) {
