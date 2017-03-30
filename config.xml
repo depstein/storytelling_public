@@ -20,9 +20,15 @@
   <platform name="android">
     <allow-intent href="market:*"/>
   </platform>
-  <platform name="ios">
+  <platform name="ios" target="*-Info.plist" parent="LSApplicationQueriesSchemes">
     <allow-intent href="itms:*"/>
     <allow-intent href="itms-apps:*"/>
+    <array>
+      <string>sms</string>
+      <string>email</string>
+      <string>com.apple.social.facebook</string>
+      <string>com.apple.social.twitter</string>
+    </array>
   </platform>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
@@ -48,4 +54,5 @@
     <variable name="ACCESS_TOKEN" value="pk.eyJ1IjoiZGVwc3RlaW4iLCJhIjoiY2owMWpnOXN5MDF1OTMycW52bGg1bnludyJ9.ss9hA0RVl_2P9UuOtMLZvQ"/>
   </plugin>
   <plugin name="cordova-sqlite-storage" spec="~2.0.2"/>
+  <plugin name="cordova-custom-config" spec="~3.1.3"/>
 </widget>
