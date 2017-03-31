@@ -6,6 +6,7 @@ import { RunningData } from './running-data';
 export class ChapterData {
     timestamp:any; //TODO: should this field be private, since photos/whatever will each have their own moments?
     id:string;
+    chapterType:string = 'undefined'; //options: 'undefined', 'diy', 'running'. Probably add 'setback' and 'completion' eventually
     photos:PhotoData[] = null;
     run:RunningData = null;
     textDescription:string = null;
@@ -13,8 +14,9 @@ export class ChapterData {
     expenses:number = null;
     emotion:string = null; //TODO: make this more complicated eventually, probably it's own object
 
-    constructor(){
+    constructor(chapterType:string) {
      this.id = shortid.generate();
+     this.chapterType = chapterType;
      //TODO: this will clearly break if a story spans across years, but whatever.
      this.timestamp = moment().startOf('year');
     }
@@ -59,7 +61,7 @@ export class ChapterData {
     getMessage() {
         let message:string =this.textDescription === null ? "" : this.textDescription + "\n\n"
         //DIY chapter?
-        if(this.run === null) {
+        if(this.chapterType == 'running') {
             return message + "Worked " + this.minutesStr + " hours";
         }
         //Running chapter?
@@ -69,7 +71,7 @@ export class ChapterData {
     }
 
     getImages():string|string[] {
-        if(this.run === null) {
+        if(this.chapterType == 'running') {
             return this.photos.map((photo:PhotoData) => {return photo.pictureURL;});
         }
         else {

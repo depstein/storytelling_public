@@ -8,7 +8,10 @@ export class RunningData {
   id:string = null;
   distance:number = null;
   map_polyline:string = null;
+  displayDuration:boolean = null;
+  displayPace:boolean = null;
   duration:number = null;
+  pace:string = null;
   coordinates:any = null;
   bounds:any = null;
   map:any = null;
@@ -30,7 +33,16 @@ export class RunningData {
     this.map_polyline = map_polyline;
     this.coordinates = RunningData.decodePolyline(map_polyline);
     this.duration = duration;
+    var paceFractional = (this.duration / 60.0) / this.distance;
+    this.pace = Math.floor(paceFractional) + ":" + Math.floor((paceFractional % 1) * 60);
     this.staticMapUrl = "https://api.mapbox.com/styles/v1/mapbox/streets-v9/static/path-5+f44-0.5+f44-0.2(" + encodeURIComponent(this.map_polyline) + ")/auto/100x100?access_token=pk.eyJ1IjoiZGVwc3RlaW4iLCJhIjoiY2owMWpnOXN5MDF1OTMycW52bGg1bnludyJ9.ss9hA0RVl_2P9UuOtMLZvQ";
+  }
+
+  addPaceDuration(paceDuration) {
+    this.displayPace = paceDuration['display']['pace'] || false;
+    this.displayDuration = paceDuration['display']['duration'] || false;
+    this.duration = paceDuration['value']['duration'] * 60 || this.duration; //Scale it back to in seconds.
+    this.pace = paceDuration['value']['pace'] || this.pace;
   }
 
   get distanceStr() {
@@ -39,6 +51,14 @@ export class RunningData {
 
   get timestampStr() {
     return this.timestamp.format('dddd, MMMM Do');
+  }
+
+  get durationReadable() {
+    return Math.ceil(this.duration / 60.0);
+  }
+
+  get paceReadable() {
+    return this.pace;
   }
 
   getBounds() {

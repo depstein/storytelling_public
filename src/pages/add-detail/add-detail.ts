@@ -4,6 +4,7 @@ import { ChapterData } from '../../models/chapter-data';
 import { AddTextDescriptionPage } from '../add-text-description/add-text-description';
 import { AddExpensesPage } from '../add-expenses/add-expenses';
 import { AddEmotionPage } from '../add-emotion/add-emotion';
+import { AddPacePage } from '../add-pace/add-pace';
 import { ReviewChapterPage } from '../review-chapter/review-chapter';
 import { DataStorage } from '../../providers/data-storage';
 
@@ -20,12 +21,14 @@ import { DataStorage } from '../../providers/data-storage';
 })
 export class AddDetailPage {
   chapterData:ChapterData;
+  chapterType:string;
   params:any = {};
   textDescriptionPage:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private dataStore:DataStorage, public modalCtrl: ModalController) {
     this.textDescriptionPage = AddTextDescriptionPage;
     this.chapterData = this.navParams.get("chapterData");
+    this.chapterType = this.navParams.get("chapterType");
     this.params = {chapterData: this.chapterData};
   }
 
@@ -56,6 +59,16 @@ export class AddDetailPage {
     modal.present();
   }
 
+  openPace() {
+    let modal = this.modalCtrl.create(AddPacePage, {runData:this.chapterData.run});
+    modal.onDidDismiss(data => {
+      if(this.chapterData.run) {
+        this.chapterData.run.addPaceDuration(data);
+      }
+    })
+    modal.present();
+  }
+
   getTextDescriptionColor() {
     return this.chapterData.textDescription ? "light" : "default";
   }
@@ -66,6 +79,10 @@ export class AddDetailPage {
 
   getEmotionColor() {
     return this.chapterData.emotion ? "light" : "default";
+  }
+
+  getPaceColor() {
+    return (this.chapterData.run.displayDuration || this.chapterData.run.displayPace) ? "light" : "default";
   }
 
   reviewChapter() {

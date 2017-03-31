@@ -19,13 +19,25 @@
     <ion-icon name="list"></ion-icon>
     Text Description
   </button>
-  <button ion-button icon-left full [color]="getExpensesColor()" (click)="openExpenses()">
+  <button ion-button icon-left full *ngIf="chapterType == 'diy'" [color]="getExpensesColor()" (click)="openExpenses()">
     <ion-icon name="cash"></ion-icon>
     Expenses
   </button>
-  <button ion-button icon-left full disabled>
+  <button ion-button icon-left *ngIf="chapterType == 'diy'" full disabled>
     <ion-icon name="navigate"></ion-icon>
     Place Visited
+  </button>
+  <button ion-button icon-left *ngIf="chapterType == 'running'" full disabled>
+    <ion-icon name="cloud"></ion-icon>
+    Weather
+  </button>
+  <button ion-button icon-left *ngIf="chapterType == 'running'" full disabled>
+    <ion-icon name="image"></ion-icon>
+    Photos
+  </button>
+  <button ion-button icon-left *ngIf="chapterType == 'running'" [color]="getPaceColor()" (click)="openPace()" full>
+    <ion-icon name="clock"></ion-icon>
+    Pace/Time
   </button>
   <button ion-button icon-left full [color]="getEmotionColor()" (click)="openEmotion()">
     <ion-icon name="happy"></ion-icon>

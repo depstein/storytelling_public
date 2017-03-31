@@ -8,6 +8,7 @@ import { AddDetailPage } from '../pages/add-detail/add-detail';
 import { AddTextDescriptionPage } from '../pages/add-text-description/add-text-description';
 import { AddExpensesPage } from '../pages/add-expenses/add-expenses';
 import { AddEmotionPage } from '../pages/add-emotion/add-emotion';
+import { AddPacePage } from '../pages/add-pace/add-pace';
 import { WriteDiyPage } from '../pages/write-diy/write-diy';
 import { WriteRunningPage } from '../pages/write-running/write-running';
 import { ReviewChapterPage } from '../pages/review-chapter/review-chapter';
@@ -25,6 +26,7 @@ import { Storage } from '@ionic/storage';
     AddTextDescriptionPage,
     AddExpensesPage,
     AddEmotionPage,
+    AddPacePage,
     WritePage,
     ViewPage,
     TabsPage,
@@ -46,6 +48,7 @@ import { Storage } from '@ionic/storage';
     AddTextDescriptionPage,
     AddExpensesPage,
     AddEmotionPage,
+    AddPacePage,
     SettingsPage,
     WritePage,
     ViewPage,

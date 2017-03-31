@@ -11,6 +11,13 @@
 <ion-item *ngIf="chapterData.run != null">
   <img [src]="chapterData.run.staticMapUrl">
   {{chapterData.run.distanceStr}} miles
+  
+  <ion-item *ngIf="chapterData.run.displayPace">
+    {{chapterData.run.paceReadable}} pace
+  </ion-item>
+  <ion-item *ngIf="chapterData.run.displayDuration">
+    {{chapterData.run.durationReadable}} duration
+  </ion-item>
 </ion-item>
 <ion-slides *ngIf="chapterData.photos != null">
   <ion-slide *ngFor="let item of chapterData.photos">

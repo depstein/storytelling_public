@@ -17,11 +17,9 @@
 
 
 <ion-content padding>
-<form (ngSubmit)="logForm()">
   <ion-item>
     <ion-label stacked>Write text description:</ion-label>
     <ion-textarea [(ngModel)]="description.text" name="description" rows="4"></ion-textarea>
   </ion-item>
-  <button ion-button type="submit" block>Submit</button>
-</form>
+  <button ion-button full color="secondary" type="submit" (click)="logForm()">Submit</button>
 </ion-content>

@@ -17,11 +17,9 @@
 
 
 <ion-content padding>
-<form (ngSubmit)="logForm()">
   <ion-item>
     <ion-label stacked>Enter expenses in dollars:</ion-label>
     <ion-input  placeholder="0" [(ngModel)]="expenses.amount" name="expenses"></ion-input>
   </ion-item>
-  <button ion-button type="submit" block>Submit</button>
-</form>
+  <button ion-button full color="secondary" type="submit" (click)="logForm()">Submit</button>
 </ion-content>
