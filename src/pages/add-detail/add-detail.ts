@@ -4,7 +4,8 @@ import { ChapterData } from '../../models/chapter-data';
 import { AddTextDescriptionPage } from '../add-text-description/add-text-description';
 import { AddExpensesPage } from '../add-expenses/add-expenses';
 import { AddEmotionPage } from '../add-emotion/add-emotion';
-import { ReviewChapterPage } from '../review-chapter/review-chapter'
+import { ReviewChapterPage } from '../review-chapter/review-chapter';
+import { DataStorage } from '../../providers/data-storage';
 
 /*
   Generated class for the AddDetail page.
@@ -14,14 +15,15 @@ import { ReviewChapterPage } from '../review-chapter/review-chapter'
 */
 @Component({
   selector: 'page-add-detail',
-  templateUrl: 'add-detail.html'
+  templateUrl: 'add-detail.html',
+  providers: [ DataStorage ]
 })
 export class AddDetailPage {
   chapterData:ChapterData;
   params:any = {};
   textDescriptionPage:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private dataStore:DataStorage, public modalCtrl: ModalController) {
     this.textDescriptionPage = AddTextDescriptionPage;
     this.chapterData = this.navParams.get("chapterData");
     this.params = {chapterData: this.chapterData};
@@ -55,18 +57,19 @@ export class AddDetailPage {
   }
 
   getTextDescriptionColor() {
-    return this.chapterData.textDescription ? "secondary" : "default";
+    return this.chapterData.textDescription ? "light" : "default";
   }
 
   getExpensesColor() {
-    return this.chapterData.expenses ? "secondary" : "default";
+    return this.chapterData.expenses ? "light" : "default";
   }
 
   getEmotionColor() {
-    return this.chapterData.emotion ? "secondary" : "default";
+    return this.chapterData.emotion ? "light" : "default";
   }
 
   reviewChapter() {
+    this.dataStore.addChapter(this.chapterData);
     this.navCtrl.push(ReviewChapterPage, {chapterData:this.chapterData});
   }
 

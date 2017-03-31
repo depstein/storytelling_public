@@ -13,7 +13,9 @@ import 'rxjs/add/operator/map';
 export class DataStorage {
   //TODO: move this to the cloud!
   //When the cloud move is done, visit which of these should be asynchronous and which can be synchronous.
-  static chapters:ChapterData[] = [];
+  static chapters:ChapterData[] = null;
+  static chapterArrayDirty = true;
+  static chapterIds:{} = {};
   static photoIds:{} = {};
   static runIds:{} = {};
 
@@ -22,6 +24,17 @@ export class DataStorage {
 
   getAllChapters() {
     return new Promise((resolve, reject) => {
+      //If the bit is dirty, refresh the list of chapters.
+      //This probably needs more rigorous testing.
+      if(DataStorage.chapterArrayDirty) {
+        DataStorage.chapters = [];
+        for(var id in DataStorage.chapterIds) {
+          DataStorage.chapters.push(DataStorage.chapterIds[id]);
+        }
+
+        DataStorage.chapters.sort((a, b) => {return a.timestamp.isBefore(b.timestamp);} );
+        DataStorage.chapterArrayDirty = false;
+      }
       resolve(DataStorage.chapters);
     });
   }
@@ -35,7 +48,8 @@ export class DataStorage {
   }
 
   addChapter(chapter:ChapterData) {
-    DataStorage.chapters.push(chapter);
+    DataStorage.chapterIds[chapter.id] = chapter;
+
     if(chapter.photos) {
       chapter.photos.forEach((photo) => {
         DataStorage.photoIds[photo.id] = true;
@@ -44,5 +58,7 @@ export class DataStorage {
     if(chapter.run) {
       DataStorage.runIds[chapter.run.id] = true;
     }
+
+    DataStorage.chapterArrayDirty = true;
   }
 }

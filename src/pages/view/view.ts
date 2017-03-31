@@ -24,7 +24,7 @@ export class ViewPage {
     
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     this.dataStore.getAllChapters().then((value:ChapterData[]) => {
       this.chapters = value;
     }).catch(() => {

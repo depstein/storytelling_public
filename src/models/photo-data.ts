@@ -13,4 +13,8 @@ export class PhotoData {
         this.timestamp = timestamp;
         this.pictureURL = pictureURL;
     }
+
+    get timestampStr() {
+        return this.timestamp.format('dddd, MMMM Do');
+    }
 }

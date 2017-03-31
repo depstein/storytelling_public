@@ -7,18 +7,28 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>reviewChapter</ion-title>
+    <ion-title>Review Chapter</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  Your chapter has been added to your story!
   <view-chapter [chapterData]="chapterData"></view-chapter>
-  <button ion-button (click)="shareViaFacebook()">
+  <button ion-button full (click)="share()">
     Send to Facebook
   </button>
-  <button ion-button (click)="completeChapter()">
+  <button ion-button full (click)="share()">
+    Send to Twitter
+  </button>
+  <button ion-button full (click)="share()">
+    Send via Email
+  </button>
+  <button ion-button full (click)="share()">
+    Send to Text
+  </button>
+  <button ion-button full color="secondary" (click)="completeChapter()">
     Complete Chapter
   </button>
 </ion-content>

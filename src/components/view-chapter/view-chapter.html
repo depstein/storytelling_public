@@ -6,11 +6,11 @@
 -->
 
 <ion-item>
-  {{chapterData.timestamp}}
+  {{chapterData.timestampStr}}
 </ion-item>
 <ion-item *ngIf="chapterData.run != null">
   <img [src]="chapterData.run.staticMapUrl">
-  {{chapterData.run.distance}}
+  {{chapterData.run.distanceStr}} miles
 </ion-item>
 <ion-slides *ngIf="chapterData.photos != null">
   <ion-slide *ngFor="let item of chapterData.photos">

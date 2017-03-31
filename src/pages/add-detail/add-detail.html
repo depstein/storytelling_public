@@ -7,31 +7,31 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>What other detail would you like to add?</ion-title>
+    <ion-title>Add More Details</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <button ion-button icon-left [color]="getTextDescriptionColor()" (click)="openTextDescription()">
+  How about adding some details about your chapter?
+  <button ion-button icon-left full [color]="getTextDescriptionColor()" (click)="openTextDescription()">
     <ion-icon name="list"></ion-icon>
     Text Description
   </button>
-  <button ion-button icon-left [color]="getExpensesColor()" (click)="openExpenses()">
+  <button ion-button icon-left full [color]="getExpensesColor()" (click)="openExpenses()">
     <ion-icon name="cash"></ion-icon>
     Expenses
   </button>
-  <button ion-button icon-left>
+  <button ion-button icon-left full disabled>
     <ion-icon name="navigate"></ion-icon>
     Place Visited
   </button>
-  <button ion-button icon-left [color]="getEmotionColor()" (click)="openEmotion()">
+  <button ion-button icon-left full [color]="getEmotionColor()" (click)="openEmotion()">
     <ion-icon name="happy"></ion-icon>
     Emotion
   </button>
-  <ion-item>{{chapterData.id}}</ion-item>
-  <button ion-button (click)="reviewChapter()">
+  <button ion-button full color="secondary" (click)="reviewChapter()">
     Review Chapter
   </button>
 </ion-content>

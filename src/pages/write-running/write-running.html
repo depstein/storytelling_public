@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>WriteRunning</ion-title>
+    <ion-title>Add Chapter</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -22,7 +22,7 @@
       </ion-thumbnail>
       <!--<div item-right [id]="item.id" style='width: 200px; height:100px;'></div>-->
       <ion-label>
-        {{item.timestamp}}
+        {{item.timestampStr}}
       </ion-label>
       <ion-radio item-left [value]="item.id" (ionSelect)="selectedRun(item.id)" [disabled]="isDisabled(item.id)"></ion-radio>
     </ion-item>
@@ -35,6 +35,6 @@
       <ion-label color="primary">Miles ran</ion-label>
       <ion-input type="number" [(ngModel)]="distanceStr"></ion-input>
     </ion-item>
-    <button ion-button full type="submit" (click)="logForm()">Next</button>
+    <button ion-button full color="secondary" type="submit" (click)="logForm()">Next</button>
   </ion-toolbar>
 </ion-footer>

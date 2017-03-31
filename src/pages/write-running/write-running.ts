@@ -69,7 +69,7 @@ export class WriteRunningPage {
   }
 
   get distanceStr() {
-    return this.distanceRan.toString();
+    return this.distanceRan.toFixed(2);
   }
 
   isDisabled(id) {

@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>WriteDiy</ion-title>
+    <ion-title>Add Chapter</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -21,9 +21,9 @@
         <img [src]="item.pictureURL | cdvphotolibrary">
       </ion-thumbnail>
       <ion-label>
-        {{item.timestamp}}
+        {{item.timestampStr}}
       </ion-label>
-      <ion-checkbox [(ngModel)]="pictureIdsSelected[item.id]" [disabled]="isDisabled(item.id)" name="pictureIdsSelected.pictures"></ion-checkbox>
+      <ion-checkbox [(ngModel)]="pictureIdsSelected[item.id]" (ionSelect)="selectedPicture(item.id)" [disabled]="isDisabled(item.id)" name="pictureIdsSelected.pictures"></ion-checkbox>
     </ion-item>
   </ion-list>
 </ion-content>
@@ -34,6 +34,6 @@
         <ion-label color="primary">Minutes worked</ion-label>
         <ion-input type="number" [(ngModel)]="minuteStr"></ion-input>
       </ion-item>
-      <button ion-button full type="submit" (click)="logForm()">Next</button>
+      <button ion-button full color="secondary" type="submit" (click)="logForm()">Next</button>
     </ion-toolbar>
 </ion-footer>

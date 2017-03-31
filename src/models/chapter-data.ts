@@ -18,6 +18,14 @@ export class ChapterData {
      //TODO: this will clearly break if a story spans across years, but whatever.
      this.timestamp = moment().startOf('year');
     }
+
+    get timestampStr() {
+        return this.timestamp.format('dddd, MMMM Do');
+    }
+
+    get minutesStr() {
+        return (this.minutesWorked/60.0).toFixed(1);
+    }
     
     addPictures(photos:PhotoData[]) {
         this.photos = photos;
@@ -45,5 +53,32 @@ export class ChapterData {
 
     addEmotion(emotion:string) {
         this.emotion = emotion;
+    }
+
+    //TODO: design the code betterer so I don't have to include an if statement in places like these.
+    getMessage() {
+        let message:string =this.textDescription === null ? "" : this.textDescription + "\n\n"
+        //DIY chapter?
+        if(this.run === null) {
+            return message + "Worked " + this.minutesStr + " hours";
+        }
+        //Running chapter?
+        else {
+            return message + "Ran " + this.run.distanceStr + " miles";
+        }
+    }
+
+    getImages():string|string[] {
+        if(this.run === null) {
+            return this.photos.map((photo:PhotoData) => {return photo.pictureURL;});
+        }
+        else {
+            return this.run.staticMapUrl;
+        }
+    }
+
+    getUrl() {
+        //TODO: publicly accessible URLs!
+        return null;
     }
 }
