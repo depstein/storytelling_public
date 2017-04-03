@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { ChapterData } from '../../models/chapter-data';
-import { AddTextDescriptionPage } from '../add-text-description/add-text-description';
 import { AddExpensesPage } from '../add-expenses/add-expenses';
 import { AddEmotionPage } from '../add-emotion/add-emotion';
 import { AddPacePage } from '../add-pace/add-pace';
@@ -23,24 +22,15 @@ export class AddDetailPage {
   chapterData:ChapterData;
   chapterType:string;
   params:any = {};
-  textDescriptionPage:any;
+  description:string = null;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private dataStore:DataStorage, public modalCtrl: ModalController) {
-    this.textDescriptionPage = AddTextDescriptionPage;
     this.chapterData = this.navParams.get("chapterData");
     this.chapterType = this.navParams.get("chapterType");
     this.params = {chapterData: this.chapterData};
   }
 
   ionViewDidLoad() {
-  }
-
-  openTextDescription() {
-    let modal = this.modalCtrl.create(AddTextDescriptionPage);
-    modal.onDidDismiss(data => {
-      this.chapterData.addTextDescription(data);
-    })
-    modal.present();
   }
 
   openExpenses() {
@@ -69,10 +59,6 @@ export class AddDetailPage {
     modal.present();
   }
 
-  getTextDescriptionColor() {
-    return this.chapterData.textDescription ? "light" : "default";
-  }
-
   getExpensesColor() {
     return this.chapterData.expenses ? "light" : "default";
   }
@@ -86,6 +72,9 @@ export class AddDetailPage {
   }
 
   reviewChapter() {
+    if(this.description != null) {
+      this.chapterData.addTextDescription(this.description);
+    }
     this.dataStore.addChapter(this.chapterData);
     this.navCtrl.push(ReviewChapterPage, {chapterData:this.chapterData});
   }

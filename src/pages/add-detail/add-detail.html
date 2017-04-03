@@ -15,10 +15,10 @@
 
 <ion-content padding>
   How about adding some details about your chapter?
-  <button ion-button icon-left full [color]="getTextDescriptionColor()" (click)="openTextDescription()">
-    <ion-icon name="list"></ion-icon>
-    Text Description
-  </button>
+  <ion-item>
+    <ion-label stacked>Write text description:</ion-label>
+    <ion-textarea [(ngModel)]="description" name="description" rows="4"></ion-textarea>
+  </ion-item>
   <button ion-button icon-left full *ngIf="chapterType == 'diy'" [color]="getExpensesColor()" (click)="openExpenses()">
     <ion-icon name="cash"></ion-icon>
     Expenses
