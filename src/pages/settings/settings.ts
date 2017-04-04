@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { UserData } from '../../providers/user-data';
 
 /*
   Generated class for the Settings page.
@@ -9,13 +10,19 @@ import { NavController, NavParams } from 'ionic-angular';
 */
 @Component({
   selector: 'page-settings',
-  templateUrl: 'settings.html'
+  templateUrl: 'settings.html',
+  providers: [ UserData ]
 })
 export class SettingsPage {
+  uid:string = null;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, private userData:UserData) {
+  }
 
   ionViewDidLoad() {
+    this.userData.getUid().then((uid:string) => {
+      this.uid = uid;
+    });
   }
 
 }

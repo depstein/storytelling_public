@@ -61,7 +61,7 @@ export class ChapterData {
     getMessage() {
         let message:string =this.textDescription === null ? "" : this.textDescription + "\n\n"
         //DIY chapter?
-        if(this.chapterType == 'running') {
+        if(this.chapterType == 'diy') {
             return message + "Worked " + this.minutesStr + " hours";
         }
         //Running chapter?
@@ -71,7 +71,7 @@ export class ChapterData {
     }
 
     getImages():string|string[] {
-        if(this.chapterType == 'running') {
+        if(this.chapterType == 'diy') {
             return this.photos.map((photo:PhotoData) => {return photo.pictureURL;});
         }
         else {

@@ -15,7 +15,7 @@ import { ReviewChapterPage } from '../pages/review-chapter/review-chapter';
 import { ViewChapterComponent } from '../components/view-chapter/view-chapter';
 import { TabsPage } from '../pages/tabs/tabs';
 import { CDVPhotoLibraryPipe } from '../providers/cdvphotolibrary.pipe';
-import { Storage } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,8 @@ import { Storage } from '@ionic/storage';
     CDVPhotoLibraryPipe,
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
