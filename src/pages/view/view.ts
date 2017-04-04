@@ -24,7 +24,8 @@ export class ViewPage implements AfterViewInit {
   chapters:ChapterData[] = [];
   chapterView:string = "timeline";
   vegaView = null;
-  chartData = null;
+  focusChapter:ChapterData = null;
+  onTimelinePage:boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform, private dataStore:DataStorage, private vegaSpec:VegaSpecification) {
     
@@ -41,13 +42,15 @@ export class ViewPage implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.updateVegaChart();
   }
 
   selectedTimeline() {
+    this.onTimelinePage = true;
   }
 
   selectedGraph() {
-    this.updateVegaChart();
+    this.onTimelinePage = false;
   }
 
   updateVegaChart() {
@@ -56,8 +59,9 @@ export class ViewPage implements AfterViewInit {
       this.vegaSpec.getVegaSpecification(this.chapters).then((json) => {
         this.vegaView = new vega.View(vega.parse(json)).initialize(this.chart.nativeElement).renderer('svg').hover().run();
         this.vegaView.addEventListener('click', (evt, item) => {
-          console.log(evt);
-          console.log(item);
+          if(item && item.datum && item.datum.id) {
+            this.focusChapter = this.chapters.find((el:ChapterData) => {return el.id == item.datum.id;});
+          }
         });
       }).catch((error) => {
         console.error(error);

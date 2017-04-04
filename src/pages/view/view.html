@@ -15,7 +15,8 @@
 
 <ion-content padding>
   <ion-toolbar>
-    <ion-segment [(ngModel)]="chapterView">
+  <h1 *ngIf="chapters?.length == 0">There's nothing in your story right now. Go add something!</h1>
+    <ion-segment *ngIf="chapters?.length > 0" [(ngModel)]="chapterView">
       <ion-segment-button value="timeline" (ionSelect)="selectedTimeline()">
         Timeline
       </ion-segment-button>
@@ -24,10 +25,14 @@
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
-  <h1 *ngIf="chapters?.length == 0">There's nothing in your story right now. Go add something!</h1>
-  <ion-item *ngFor="let chapter of chapters">
-    <view-chapter [chapterData]="chapter"></view-chapter>
-  </ion-item>
-  <div #chart *ngIf="chapterView == 'graph'">{{chartData}}</div>
+  <div [hidden]="!onTimelinePage">
+    <ion-item *ngFor="let chapter of chapters">
+      <view-chapter [chapterData]="chapter"></view-chapter>
+    </ion-item>
+  </div>
+  <div [hidden]="onTimelinePage">
+    <div #chart></div>
+    <view-chapter *ngIf="focusChapter != null" [chapterData]="focusChapter"></view-chapter>
+  </div>
   
 </ion-content>
