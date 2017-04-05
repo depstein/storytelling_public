@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { ChapterData } from '../models/chapter-data';
+import { PhotoData } from '../models/photo-data';
+import { RunningData } from '../models/running-data';
 import 'rxjs/add/operator/map';
 
 /*
@@ -60,5 +62,33 @@ export class DataStorage {
     }
 
     DataStorage.chapterArrayDirty = true;
+  }
+
+  public preloadRunning(runs:RunningData[]) {
+    //TODO: Super ad-hoc. Consider formalizing this process.
+    var chapter1 = new ChapterData('running');
+    chapter1.addRun(runs[0]);
+    chapter1.addTextDescription("That was a hard one! But I'm glad I did it.");
+    this.addChapter(chapter1);
+    var chapter2 = new ChapterData('running');
+    chapter2.addRun(runs[3]);
+    chapter2.run.displayPace = true;
+    chapter2.addEmotion('sad');
+    this.addChapter(chapter2);
+  }
+
+  public preloadDiy(photos:PhotoData[]) {
+    //TODO: Super ad-hoc. Consider formalizing this process.
+    var chapter1 = new ChapterData('diy');
+    chapter1.addPictures([photos[0]]);
+    chapter1.addTextDescription('Spent a lot of time today! Feeling good about my progress.');
+    chapter1.addEmotion('happy');
+    chapter1.addMinutesWorked(240);
+    this.addChapter(chapter1);
+    var chapter2 = new ChapterData('diy');
+    chapter2.addPictures([photos[2], photos[3]]);
+    chapter2.addExpenses(30);
+    chapter2.addMinutesWorked(30);
+    this.addChapter(chapter2);
   }
 }

@@ -23,6 +23,7 @@ export class WriteRunningPage {
   allRuns: RunningData[] = [];
   runIdSelected: any = {};
   distanceRan:number = 0;
+  public static preloadFakeData:boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public platform:Platform, private runs : StravaRuns, private dataStore:DataStorage, private ngz:NgZone) {
     //TODO: possibly load this from a file, or something more scretive...
@@ -34,6 +35,11 @@ export class WriteRunningPage {
     this.platform.ready().then(() => {
       this.runs.getRuns().then((runs:RunningData[]) => {
           this.allRuns = runs;
+          if(WriteRunningPage.preloadFakeData) {
+          this.dataStore.preloadRunning(this.allRuns);
+          //Don't preload again every time this page is accessed.
+          WriteRunningPage.preloadFakeData = false;
+        }
         });
     });
   }

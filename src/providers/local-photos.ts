@@ -33,8 +33,9 @@ export class LocalPhotos {
   private generateFakePhotos() {
     return new Promise((resolve, reject) => {
       var photos:PhotoData[] = [];
-      for(var i=0;i<this.maxPhotoNumber;i++) {
-        photos.push(this.photoDatumFromPhoto(""+i, moment(), 'assets/img/gameshot.png'));
+      //I only made 5 fake photos... that's probably okay.
+      for(var i=1;i<=5;i++) {
+        photos.push(this.photoDatumFromPhoto(""+i, moment('2017-04-01').subtract(i*3, 'day'), 'assets/img/table' + i + '.jpg'));
       }
       resolve(photos);
     });

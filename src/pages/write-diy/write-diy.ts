@@ -22,6 +22,7 @@ export class WriteDiyPage {
   allImages: PhotoData[] = [];
   pictureIdsSelected: any = {};
   minutesWorked:number = 0;
+  public static preloadFakeData:boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public platform:Platform, private photos : LocalPhotos, private dataStore:DataStorage) {}
 
@@ -29,6 +30,11 @@ export class WriteDiyPage {
     this.platform.ready().then(() => {
       this.photos.getPhotos().then((photos:PhotoData[]) => {
         this.allImages = photos;
+        if(WriteDiyPage.preloadFakeData) {
+          this.dataStore.preloadDiy(this.allImages);
+          //Don't preload again every time this page is accessed.
+          WriteDiyPage.preloadFakeData = false;
+        }
       }, (error) => {
         console.log(error);
       });
