@@ -20,14 +20,17 @@ import { DataStorage } from '../../providers/data-storage';
 })
 export class AddDetailPage {
   chapterData:ChapterData;
-  chapterType:string;
   params:any = {};
   description:string = null;
+  descriptionPrompt:string = "What happened? [TODO: Ask Mira about better prompts here]";
+  //Variables on whether to hide each parameter
+  hidePhotos = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private dataStore:DataStorage, public modalCtrl: ModalController) {
     this.chapterData = this.navParams.get("chapterData");
-    this.chapterType = this.navParams.get("chapterType");
     this.params = {chapterData: this.chapterData};
+    //Set all the variables on hiding parameters
+    this.hidePhotos = this.chapterData.chapterType == 'diy' && this.chapterData.eventType == 'regular';
   }
 
   ionViewDidLoad() {

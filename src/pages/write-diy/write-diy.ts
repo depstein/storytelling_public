@@ -55,10 +55,10 @@ export class WriteDiyPage {
   }
 
   logForm() {
-    let chapterData: ChapterData = new ChapterData('diy');
+    let chapterData: ChapterData = new ChapterData('diy', 'regular');
     chapterData.addMinutesWorked(this.minutesWorked);
     chapterData.addPictures(this.photos.getPhotosFromIDs(Object.keys(this.pictureIdsSelected)));
-    this.navCtrl.push(AddDetailPage, {chapterData:chapterData, chapterType:'diy'});
+    this.navCtrl.push(AddDetailPage, {chapterData:chapterData});
   }
 
 }

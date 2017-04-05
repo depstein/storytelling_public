@@ -83,11 +83,11 @@ export class WriteRunningPage {
   }
 
   logForm() {
-    let chapterData: ChapterData = new ChapterData('running');
+    let chapterData: ChapterData = new ChapterData('running', 'regular');
     let run:RunningData = this.runs.getRunFromId(this.runIdSelected['run']);
     run.distance = this.distanceRan; //In case the distance entered is is different
     chapterData.addRun(run);
-    this.navCtrl.push(AddDetailPage, {chapterData:chapterData, chapterType:'running'});
+    this.navCtrl.push(AddDetailPage, {chapterData:chapterData});
   }
 
 }

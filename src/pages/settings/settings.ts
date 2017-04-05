@@ -15,6 +15,7 @@ import { UserData } from '../../providers/user-data';
 })
 export class SettingsPage {
   uid:string = null;
+  storyType:string = null;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private userData:UserData) {
   }
@@ -22,6 +23,10 @@ export class SettingsPage {
   ionViewDidLoad() {
     this.userData.getUid().then((uid:string) => {
       this.uid = uid;
+    });
+
+    this.userData.getStoryType().then((storyType:string) => {
+      this.storyType = storyType;
     });
   }
 

@@ -9,19 +9,25 @@
 
 <ion-content padding>
   <h2>Storytellr (better name pending)</h2>
-  <button ion-button full color="secondary" (click)="writeDiyStory()">
+  <button ion-button full color="secondary" (click)="writeChapter()">
+    Write Chapter
+  </button>
+  <button ion-button full color="danger" (click)="writeChapter('diy')">
     Write DIY Chapter
   </button>
-  <button ion-button full color="secondary" (click)="writeRunningStory()">
+  <button ion-button full color="danger" (click)="writeChapter('running')">
     Write Running Chapter
   </button>
-  <button ion-button full color="secondary" disabled>
-    Write a chapter without data
+  <button ion-button full color="secondary" (click)="writeSetback()">
+    Write a Setback
+  </button>
+  <button ion-button full color="secondary" (click)="writeHappening()">
+    Write a Happening
   </button>
   <button ion-button full color="secondary" disabled>
     Finish story
   </button>
   <ion-item>
-    This page is for debugging purposes. You won't be able to choose between running and DIY in the real app. But it's convenient for debugging.
+    The red buttons won't exist in the released version.
   </ion-item>
 </ion-content>

@@ -6,7 +6,8 @@ import { RunningData } from './running-data';
 export class ChapterData {
     timestamp:any; //TODO: should this field be private, since photos/whatever will each have their own moments?
     id:string;
-    chapterType:string = 'undefined'; //options: 'undefined', 'diy', 'running'. Probably add 'setback' and 'completion' eventually
+    chapterType:string = 'undefined';//options: 'undefined', 'diy', 'running'.
+    eventType:string = 'regular'; //options: 'regular', 'setback'. Add 'happening', 'completion', and 'start' eventually
     photos:PhotoData[] = null;
     run:RunningData = null;
     textDescription:string = null;
@@ -14,11 +15,11 @@ export class ChapterData {
     expenses:number = null;
     emotion:string = null; //TODO: make this more complicated eventually, probably it's own object
 
-    constructor(chapterType:string) {
+    constructor(chapterType:string, eventType:string) {
      this.id = shortid.generate();
      this.chapterType = chapterType;
-     //TODO: this will clearly break if a story spans across years, but whatever.
-     this.timestamp = moment().startOf('year');
+     this.eventType = eventType;
+     this.timestamp = moment();
     }
 
     get timestampStr() {
@@ -31,6 +32,7 @@ export class ChapterData {
     
     addPictures(photos:PhotoData[]) {
         this.photos = photos;
+        this.timestamp = moment().startOf('year');//Won't work if spanning multiple years
         photos.forEach((photo) => {
             this.timestamp = moment.max(this.timestamp, photo.timestamp);
         });

@@ -11,41 +11,46 @@ import * as shortid from 'shortid';
 */
 @Injectable()
 export class UserData {
-  private static uid:string = null;
+  private static userData:{} = {};
 
   constructor(private storage:Storage) {
   }
 
   public getUid() {
+    return this.getUserData('uid', shortid.generate());
+  }
+
+  public getStoryType() {
+    return this.getUserData('storyType', 'diy')
+  }
+
+  private getUserData(key:string, defaultValue:string):Promise<string> {
     return new Promise((resolve, reject) => {
-      if(UserData.uid != null) {
-        //Send the UID if we have one
-        resolve(UserData.uid);
+      if(UserData.userData[key] != null) {
+        //Send the data if we have it
+        resolve(UserData.userData[key]);
       } else {
-        //Try to get it from storage
-        this.storage.ready().then(() => {
-          this.storage.get('uid').then((val) => {
-            if(val) {
-              //Store it, send it back
-              UserData.uid = val;
-              resolve(UserData.uid);
-            } else {
-              //Make one, store it, send it back
-              var uid = shortid.generate();
-              this.storage.set('uid', UserData.uid).then(() => {
-                UserData.uid = uid;
-                resolve(UserData.uid);
-              }).catch((error) => {
-                reject(error);
-              });
-            }
-          }).catch((error) => {
-            reject(error);
-          });
-      });
+          //Try to get it from storage
+          this.storage.ready().then(() => {
+            this.storage.get(key).then((val) => {
+              if(val) {
+                //Store it, send it back
+                UserData.userData[key] = val;
+                resolve(UserData.userData[key]);
+              } else {
+                //Use the default value and store it
+                this.storage.set(key, defaultValue).then(() => {
+                  UserData.userData[key] = defaultValue;
+                  resolve(UserData.userData[key]);
+                }).catch((error) => {
+                  reject(error);
+                });
+              }
+            }).catch((error) => {
+              reject(error);
+            });
+        });
       }
     });
   }
-
-
 }

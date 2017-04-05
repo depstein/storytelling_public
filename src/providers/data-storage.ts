@@ -66,11 +66,11 @@ export class DataStorage {
 
   public preloadRunning(runs:RunningData[]) {
     //TODO: Super ad-hoc. Consider formalizing this process.
-    var chapter1 = new ChapterData('running');
+    var chapter1 = new ChapterData('running', 'regular');
     chapter1.addRun(runs[0]);
     chapter1.addTextDescription("That was a hard one! But I'm glad I did it.");
     this.addChapter(chapter1);
-    var chapter2 = new ChapterData('running');
+    var chapter2 = new ChapterData('running', 'regular');
     chapter2.addRun(runs[3]);
     chapter2.run.displayPace = true;
     chapter2.addEmotion('sad');
@@ -79,13 +79,13 @@ export class DataStorage {
 
   public preloadDiy(photos:PhotoData[]) {
     //TODO: Super ad-hoc. Consider formalizing this process.
-    var chapter1 = new ChapterData('diy');
+    var chapter1 = new ChapterData('diy', 'regular');
     chapter1.addPictures([photos[0]]);
     chapter1.addTextDescription('Spent a lot of time today! Feeling good about my progress.');
     chapter1.addEmotion('happy');
     chapter1.addMinutesWorked(240);
     this.addChapter(chapter1);
-    var chapter2 = new ChapterData('diy');
+    var chapter2 = new ChapterData('diy', 'regular');
     chapter2.addPictures([photos[2], photos[3]]);
     chapter2.addExpenses(30);
     chapter2.addMinutesWorked(30);

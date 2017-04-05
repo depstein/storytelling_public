@@ -16,26 +16,26 @@
 <ion-content padding>
   How about adding some details about your chapter?
   <ion-item>
-    <ion-label stacked>Write text description:</ion-label>
+    <ion-label stacked>{{descriptionPrompt}}</ion-label>
     <ion-textarea [(ngModel)]="description" name="description" rows="4"></ion-textarea>
   </ion-item>
-  <button ion-button icon-left full *ngIf="chapterType == 'diy'" [color]="getExpensesColor()" (click)="openExpenses()">
+  <button ion-button icon-left full *ngIf="chapterData.chapterType == 'diy'" [color]="getExpensesColor()" (click)="openExpenses()">
     <ion-icon name="cash"></ion-icon>
     Expenses
   </button>
-  <button ion-button icon-left *ngIf="chapterType == 'diy'" full disabled>
+  <button ion-button icon-left *ngIf="chapterData.chapterType == 'diy'" full disabled>
     <ion-icon name="navigate"></ion-icon>
     Place Visited
   </button>
-  <button ion-button icon-left *ngIf="chapterType == 'running'" full disabled>
+  <button ion-button icon-left *ngIf="chapterData.chapterType == 'running'" full disabled>
     <ion-icon name="cloud"></ion-icon>
     Weather
   </button>
-  <button ion-button icon-left *ngIf="chapterType == 'running'" full disabled>
+  <button ion-button icon-left [hidden]="hidePhotos" full disabled>
     <ion-icon name="image"></ion-icon>
     Photos
   </button>
-  <button ion-button icon-left *ngIf="chapterType == 'running'" [color]="getPaceColor()" (click)="openPace()" full>
+  <button ion-button icon-left *ngIf="chapterData.chapterType == 'running'" [color]="getPaceColor()" (click)="openPace()" full>
     <ion-icon name="clock"></ion-icon>
     Pace/Time
   </button>
