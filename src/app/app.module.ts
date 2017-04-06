@@ -9,10 +9,12 @@ import { AddTextDescriptionPage } from '../pages/add-text-description/add-text-d
 import { AddExpensesPage } from '../pages/add-expenses/add-expenses';
 import { AddEmotionPage } from '../pages/add-emotion/add-emotion';
 import { AddPacePage } from '../pages/add-pace/add-pace';
+import { AddPhotosPage } from '../pages/add-photos/add-photos';
 import { WriteDiyPage } from '../pages/write-diy/write-diy';
 import { WriteRunningPage } from '../pages/write-running/write-running';
 import { ReviewChapterPage } from '../pages/review-chapter/review-chapter';
 import { ViewChapterComponent } from '../components/view-chapter/view-chapter';
+import { PhotoSelectorComponent } from '../components/photo-selector/photo-selector';
 import { TabsPage } from '../pages/tabs/tabs';
 import { CDVPhotoLibraryPipe } from '../providers/cdvphotolibrary.pipe';
 import { IonicStorageModule } from '@ionic/storage';
@@ -27,6 +29,7 @@ import { IonicStorageModule } from '@ionic/storage';
     AddExpensesPage,
     AddEmotionPage,
     AddPacePage,
+    AddPhotosPage,
     WritePage,
     ViewPage,
     TabsPage,
@@ -35,6 +38,7 @@ import { IonicStorageModule } from '@ionic/storage';
     ReviewChapterPage,
     //Components
     ViewChapterComponent,
+    PhotoSelectorComponent,
     //Providers
     CDVPhotoLibraryPipe,
   ],
@@ -50,6 +54,7 @@ import { IonicStorageModule } from '@ionic/storage';
     AddExpensesPage,
     AddEmotionPage,
     AddPacePage,
+    AddPhotosPage,
     SettingsPage,
     WritePage,
     ViewPage,

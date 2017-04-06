@@ -4,6 +4,7 @@ import { ChapterData } from '../../models/chapter-data';
 import { AddExpensesPage } from '../add-expenses/add-expenses';
 import { AddEmotionPage } from '../add-emotion/add-emotion';
 import { AddPacePage } from '../add-pace/add-pace';
+import { AddPhotosPage } from '../add-photos/add-photos';
 import { ReviewChapterPage } from '../review-chapter/review-chapter';
 import { DataStorage } from '../../providers/data-storage';
 
@@ -39,7 +40,9 @@ export class AddDetailPage {
   openExpenses() {
     let modal = this.modalCtrl.create(AddExpensesPage);
     modal.onDidDismiss(data => {
-      this.chapterData.addExpenses(data);
+      if(data) {
+        this.chapterData.addExpenses(data);
+      }
     })
     modal.present();
   }
@@ -47,7 +50,9 @@ export class AddDetailPage {
   openEmotion() {
     let modal = this.modalCtrl.create(AddEmotionPage);
     modal.onDidDismiss(data => {
-      this.chapterData.addEmotion(data);
+      if(data) {
+        this.chapterData.addEmotion(data);
+      }
     })
     modal.present();
   }
@@ -55,8 +60,18 @@ export class AddDetailPage {
   openPace() {
     let modal = this.modalCtrl.create(AddPacePage, {runData:this.chapterData.run});
     modal.onDidDismiss(data => {
-      if(this.chapterData.run) {
+      if(this.chapterData.run && data) {
         this.chapterData.run.addPaceDuration(data);
+      }
+    })
+    modal.present();
+  }
+
+  openPhotos() {
+    let modal = this.modalCtrl.create(AddPhotosPage);
+    modal.onDidDismiss(data => {
+      if(data) {
+        this.chapterData.addPictures(data);
       }
     })
     modal.present();
@@ -72,6 +87,10 @@ export class AddDetailPage {
 
   getPaceColor() {
     return (this.chapterData.run.displayDuration || this.chapterData.run.displayPace) ? "light" : "default";
+  }
+  
+  getPhotosColor() {
+    return this.chapterData.photos ? "light" : "default";
   }
 
   reviewChapter() {

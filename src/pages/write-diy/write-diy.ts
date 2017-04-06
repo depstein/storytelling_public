@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { LocalPhotos } from '../../providers/local-photos';
+import { PhotoSelectorComponent } from '../../components/photo-selector/photo-selector';
 import { AddDetailPage } from '../add-detail/add-detail';
 import { ChapterData } from '../../models/chapter-data';
 import { PhotoData } from '../../models/photo-data';
@@ -18,10 +19,11 @@ import { DataStorage } from '../../providers/data-storage';
   providers: [ LocalPhotos, DataStorage ]
 })
 export class WriteDiyPage {
+  @Input('photo-selector') photoSelector: PhotoSelectorComponent;
 
   allImages: PhotoData[] = [];
-  pictureIdsSelected: any = {};
   minutesWorked:number = 0;
+  pictureIdsSelected: any = {};
   public static preloadFakeData:boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public platform:Platform, private photos : LocalPhotos, private dataStore:DataStorage) {}
@@ -39,10 +41,6 @@ export class WriteDiyPage {
         console.log(error);
       });
     });
-  }
-
-  isDisabled(id) {
-    return this.dataStore.photoIdExists(id);
   }
 
   //For reasons I don't understand, the data binding will revert to a string unless this is undertaken.

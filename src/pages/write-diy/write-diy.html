@@ -14,18 +14,7 @@
 
 
 <ion-content padding>
-  <ion-list [virtualScroll]="allImages" approxItemHeight="100px">
-    <ion-item *virtualItem="let item" style="height:100px">
-      <ion-thumbnail item-right>
-        <!--This should supposedly be an ion-img. I couldn't get it to load... so hopefully this doesn't come back to bite me later.-->
-        <img [src]="item.pictureURL | cdvphotolibrary">
-      </ion-thumbnail>
-      <ion-label>
-        {{item.timestampStr}}
-      </ion-label>
-      <ion-checkbox [(ngModel)]="pictureIdsSelected[item.id]" (ionSelect)="selectedPicture(item.id)" [disabled]="isDisabled(item.id)" name="pictureIdsSelected.pictures"></ion-checkbox>
-    </ion-item>
-  </ion-list>
+  <photo-selector [allImages]="allImages" [pictureIdsSelected]="pictureIdsSelected"></photo-selector>
 </ion-content>
 
 <ion-footer>

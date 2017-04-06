@@ -31,7 +31,7 @@
     <ion-icon name="cloud"></ion-icon>
     Weather
   </button>
-  <button ion-button icon-left [hidden]="hidePhotos" full disabled>
+  <button ion-button icon-left [hidden]="hidePhotos" [color]="getPhotosColor()" (click)="openPhotos()" full>
     <ion-icon name="image"></ion-icon>
     Photos
   </button>
