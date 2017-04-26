@@ -18,6 +18,8 @@ import { PhotoSelectorComponent } from '../components/photo-selector/photo-selec
 import { TabsPage } from '../pages/tabs/tabs';
 import { CDVPhotoLibraryPipe } from '../providers/cdvphotolibrary.pipe';
 import { IonicStorageModule } from '@ionic/storage';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { IonicStorageModule } from '@ionic/storage';
     CDVPhotoLibraryPipe,
   ],
   imports: [
+    BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot()
   ],
