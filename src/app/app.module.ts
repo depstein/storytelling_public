@@ -15,7 +15,6 @@ import { WriteRunningPage } from '../pages/write-running/write-running';
 import { ReviewChapterPage } from '../pages/review-chapter/review-chapter';
 import { ViewChapterComponent } from '../components/view-chapter/view-chapter';
 import { PhotoSelectorComponent } from '../components/photo-selector/photo-selector';
-import { TabsPage } from '../pages/tabs/tabs';
 import { CDVPhotoLibraryPipe } from '../providers/cdvphotolibrary.pipe';
 import { IonicStorageModule } from '@ionic/storage';
 import { BrowserModule } from '@angular/platform-browser';
@@ -40,7 +39,6 @@ export const deepLinkConfig: DeepLinkConfig = {
     AddPhotosPage,
     WritePage,
     ViewPage,
-    TabsPage,
     WriteDiyPage,
     WriteRunningPage,
     ReviewChapterPage,
@@ -72,7 +70,6 @@ export const deepLinkConfig: DeepLinkConfig = {
     WriteDiyPage,
     WriteRunningPage,
     ReviewChapterPage,
-    TabsPage,
     ViewChapterComponent
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Storage ]

@@ -7,7 +7,17 @@
 <ion-header>
 
   <ion-navbar>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="addChapter()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>View</ion-title>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="openSettings()">
+        <ion-icon name="contact"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>

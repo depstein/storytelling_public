@@ -1,9 +1,11 @@
 import { Component, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { NavController, NavParams, Platform, IonicPage } from 'ionic-angular';
+import { NavController, NavParams, Platform, IonicPage, ModalController } from 'ionic-angular';
 import { ChapterData } from '../../models/chapter-data';
 import { ViewChapterComponent } from '../../components/view-chapter/view-chapter';
 import { DataStorage } from '../../providers/data-storage';
 import { VegaSpecification } from '../../providers/vega-specification';
+import { WritePage } from '../write/write';
+import { SettingsPage } from '../settings/settings';
 import * as vega from 'vega';
 
 /*
@@ -27,7 +29,7 @@ export class ViewPage implements AfterViewInit {
   focusChapter:ChapterData = null;
   onTimelinePage:boolean = true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform, private dataStore:DataStorage, private vegaSpec:VegaSpecification) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform, private dataStore:DataStorage, private vegaSpec:VegaSpecification, private modalCtrl:ModalController) {
     //If you view the link directly, a uid and a cid will get passed.
     //if you go to: http://localhost:8100/#/view/abc/def
     //Then in navParams.data, uid='abc' and cid='def'.
@@ -47,6 +49,15 @@ export class ViewPage implements AfterViewInit {
 
   ngAfterViewInit() {
     this.updateVegaChart();
+  }
+
+  addChapter() {
+    this.navCtrl.push(WritePage, {});
+  }
+
+  openSettings() {
+    let modal = this.modalCtrl.create(SettingsPage);
+    modal.present();
   }
 
   selectedTimeline() {
