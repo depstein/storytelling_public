@@ -1,5 +1,5 @@
 import { NgModule, ErrorHandler } from '@angular/core';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler, DeepLinkConfig } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { SettingsPage } from '../pages/settings/settings';
 import { WritePage } from '../pages/write/write';
@@ -20,6 +20,12 @@ import { CDVPhotoLibraryPipe } from '../providers/cdvphotolibrary.pipe';
 import { IonicStorageModule } from '@ionic/storage';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
+
+export const deepLinkConfig: DeepLinkConfig = {
+  links: [
+    { component: ViewPage, name: "view", segment: "view/:uid/:cid"}
+  ]
+};
 
 @NgModule({
   declarations: [
@@ -48,6 +54,7 @@ import { HttpModule } from '@angular/http';
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
+    //IonicModule.forRoot(MyApp, {}, deepLinkConfig),
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],

@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import { NavController, NavParams, Platform, IonicPage } from 'ionic-angular';
 import { ChapterData } from '../../models/chapter-data';
 import { ViewChapterComponent } from '../../components/view-chapter/view-chapter';
 import { DataStorage } from '../../providers/data-storage';
@@ -28,7 +28,11 @@ export class ViewPage implements AfterViewInit {
   onTimelinePage:boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform, private dataStore:DataStorage, private vegaSpec:VegaSpecification) {
-    
+    //If you view the link directly, a uid and a cid will get passed.
+    //if you go to: http://localhost:8100/#/view/abc/def
+    //Then in navParams.data, uid='abc' and cid='def'.
+    console.log(navParams.data);
+    //I do nothing with this information for now. But I expect to do something with it later.
   }
 
   ionViewDidEnter() {
