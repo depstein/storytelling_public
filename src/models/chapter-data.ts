@@ -8,6 +8,8 @@ export class ChapterData {
     id:string;
     chapterType:string = 'undefined';//options: 'undefined', 'diy', 'running'.
     eventType:string = 'regular'; //options: 'regular', 'setback'. Add 'happening', 'completion', and 'start' eventually
+    title:string = 'An Interesting Chapter';
+    isImportant:boolean = false;
     photos:PhotoData[] = null;
     run:RunningData = null;
     textDescription:string = null;
@@ -28,6 +30,28 @@ export class ChapterData {
 
     get minutesStr() {
         return (this.minutesWorked/60.0).toFixed(1);
+    }
+
+    get pictureURLs() {
+        let photoUrls:string[] = null;
+        if(this.photos) {
+            photoUrls = this.photos.map((photo) => {return photo.pictureURL});
+        }
+        if(this.chapterType == 'running') {
+            if(!this.photos) {
+                photoUrls = [];
+            }
+            photoUrls.unshift(this.run.staticMapUrl);
+        }
+        return photoUrls;
+    }
+
+    get amountStr() {
+        if(this.chapterType == 'diy') {
+            return this.minutesWorked + " min";
+        } else {
+            return this.run.distanceStr + " miles";
+        }
     }
     
     addPictures(photos:PhotoData[]) {
@@ -57,6 +81,14 @@ export class ChapterData {
 
     addEmotion(emotion:string) {
         this.emotion = emotion;
+    }
+
+    addTitle(title:string) {
+        this.title = title;
+    }
+
+    setImportance(importance:boolean) {
+        this.isImportant = importance;
     }
 
     //TODO: design the code betterer so I don't have to include an if statement in places like these.

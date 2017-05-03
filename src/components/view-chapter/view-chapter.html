@@ -5,34 +5,29 @@
   for more info on Angular 2 Components.
 -->
 
-<div *ngIf="chapterData != null">
-  <ion-item>
-    {{chapterData.timestampStr}}
-    {{chapterData.eventType}}
-  </ion-item>
-  <ion-item *ngIf="chapterData.run != null">
-    <img [src]="chapterData.run.staticMapUrl">
-    {{chapterData.run.distanceStr}} miles
-    
-    <ion-item *ngIf="chapterData.run.displayPace">
-      {{chapterData.run.paceReadable}} pace
-    </ion-item>
-    <ion-item *ngIf="chapterData.run.displayDuration">
-      {{chapterData.run.durationReadable}} duration
-    </ion-item>
-  </ion-item>
-  <ion-slides *ngIf="chapterData.photos != null">
-    <ion-slide *ngFor="let item of chapterData.photos">
-      <img [src]="item.pictureURL | cdvphotolibrary">
+<ion-card *ngIf="chapterData != null">
+  <ion-toolbar>
+    <ion-title left>{{chapterData.timestampStr}}</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only>
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-slides *ngIf="chapterData.pictureURLs != null">
+    <ion-slide *ngFor="let url of chapterData.pictureURLs">
+      <img [src]="url | cdvphotolibrary">
     </ion-slide>
   </ion-slides>
-  <ion-item *ngIf="chapterData.textDescription != null">
+  <ion-item>
+    <div class="left">
+      {{chapterData.title}}
+    </div>
+    <div class="right">
+      {{chapterData.amountStr}}
+    </div>
+  </ion-item>
+  <ion-item text-nowrap *ngIf="chapterData.textDescription != null">
     {{chapterData.textDescription}}
   </ion-item>
-  <ion-item *ngIf="chapterData.expenses != null">
-    {{chapterData.expenses}}
-  </ion-item>
-  <ion-item *ngIf="chapterData.emotion != null">
-    {{chapterData.emotion}}
-  </ion-item>
-</div>
+</ion-card>

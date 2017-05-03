@@ -69,9 +69,12 @@ export class DataStorage {
     var chapter1 = new ChapterData('running', 'regular');
     chapter1.addRun(runs[0]);
     chapter1.addTextDescription("That was a hard one! But I'm glad I did it.");
+    chapter1.addTitle('A hard run');
+    chapter1.setImportance(true);
     this.addChapter(chapter1);
     var chapter2 = new ChapterData('running', 'regular');
     chapter2.addRun(runs[3]);
+    chapter2.addTitle('An unfortunate run');
     chapter2.run.displayPace = true;
     chapter2.addEmotion('sad');
     this.addChapter(chapter2);
@@ -83,10 +86,13 @@ export class DataStorage {
     chapter1.addPictures([photos[0]]);
     chapter1.addTextDescription('Spent a lot of time today! Feeling good about my progress.');
     chapter1.addEmotion('happy');
+    chapter1.addTitle('A good work session');
     chapter1.addMinutesWorked(240);
+    chapter1.setImportance(true);
     this.addChapter(chapter1);
     var chapter2 = new ChapterData('diy', 'regular');
     chapter2.addPictures([photos[2], photos[3]]);
+    chapter2.addTitle('A lot of progress');
     chapter2.addExpenses(30);
     chapter2.addMinutesWorked(30);
     this.addChapter(chapter2);

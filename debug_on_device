@@ -1,1 +1,1 @@
-ionic run ios --device --livereload --consolelogs
+ionic cordova run ios --device --livereload --consolelogs

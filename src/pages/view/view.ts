@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { NavController, NavParams, Platform, IonicPage, ModalController } from 'ionic-angular';
+import { NavController, NavParams, Platform, ModalController } from 'ionic-angular';
 import { ChapterData } from '../../models/chapter-data';
 import { ViewChapterComponent } from '../../components/view-chapter/view-chapter';
 import { DataStorage } from '../../providers/data-storage';

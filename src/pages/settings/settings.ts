@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { UserData } from '../../providers/user-data';
 
 /*
@@ -17,7 +17,7 @@ export class SettingsPage {
   uid:string = null;
   storyType:string = null;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private userData:UserData) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private userData:UserData, private viewCtrl:ViewController) {
   }
 
   ionViewDidLoad() {
@@ -28,6 +28,10 @@ export class SettingsPage {
     this.userData.getStoryType().then((storyType:string) => {
       this.storyType = storyType;
     });
+  }
+
+  closeModal() {
+    this.viewCtrl.dismiss();
   }
 
 }
