@@ -5,4 +5,9 @@ view-chapter {
   .right{
     float: right;
   }
+
+  .title {
+    font-weight: 600;
+    color: color($colors, primary);
+  }
 }

@@ -83,7 +83,7 @@ export class DataStorage {
   public preloadDiy(photos:PhotoData[]) {
     //TODO: Super ad-hoc. Consider formalizing this process.
     var chapter1 = new ChapterData('diy', 'regular');
-    chapter1.addPictures([photos[0]]);
+    chapter1.addPictures([photos[0], photos[2]]);
     chapter1.addTextDescription('Spent a lot of time today! Feeling good about my progress.');
     chapter1.addEmotion('happy');
     chapter1.addTitle('A good work session');
@@ -91,7 +91,7 @@ export class DataStorage {
     chapter1.setImportance(true);
     this.addChapter(chapter1);
     var chapter2 = new ChapterData('diy', 'regular');
-    chapter2.addPictures([photos[2], photos[3]]);
+    chapter2.addPictures([photos[3]]);
     chapter2.addTitle('A lot of progress');
     chapter2.addExpenses(30);
     chapter2.addMinutesWorked(30);

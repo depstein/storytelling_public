@@ -6,44 +6,46 @@
 -->
 
 <ion-card *ngIf="chapterData != null">
-  <ion-toolbar>
-    <ion-title left>{{chapterData.timestampStr}}</ion-title>
-    <ion-buttons right>
-      <button ion-button icon-only>
-        <ion-icon name="more"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-toolbar>
-  <div *ngIf="chapterData.isImportant">
-    <ion-slides *ngIf="chapterData.pictureURLs != null">
+  <ion-item>
+    <ion-row>
+      <ion-col left>
+        {{chapterData.timestampStr}}
+      </ion-col>
+      <ion-col right text-right>
+        <button ion-button small icon-only clear no-margin>
+          <ion-icon name="more"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-item>
+  <ion-item>
+    <!--use slides if it's an important chapter and there's more than one picture-->
+    <ion-slides *ngIf="chapterData.pictureURLs != null && chapterData.isImportant && chapterData.pictureURLs.length > 1" pager>
       <ion-slide *ngFor="let url of chapterData.pictureURLs">
         <img [src]="url | cdvphotolibrary">
       </ion-slide>
     </ion-slides>
-    <ion-item>
-      <div class="left">
-        {{chapterData.title}}
-      </div>
-      <div class="right">
-        {{chapterData.amountStr}}
-      </div>
-    </ion-item>
-    <ion-item text-nowrap *ngIf="chapterData.textDescription != null">
+    <!--if this chapter is important, but there's only one image, display it-->
+    <img  *ngIf="chapterData.pictureURLs != null && chapterData.isImportant && chapterData.pictureURLs.length == 1" [src]="chapterData.pictureURLs[0] | cdvphotolibrary">
+    <!--if the chapter isn't important, display any image as a thumbnail-->
+    <ion-thumbnail *ngIf="chapterData.pictureURLs != null && !chapterData.isImportant" item-left>
+      <img [src]="chapterData.pictureURLs[0] | cdvphotolibrary">
+    </ion-thumbnail>
+    <div *ngIf="chapterData.title != null" class="left title">
+      {{chapterData.title}}
+    </div>
+    <ion-note *ngIf="chapterData.amountStr != null" item-end class="right">
+      {{chapterData.amountStr}}
+    </ion-note>
+    <ion-note *ngIf="chapterData.eventType != null && chapterData.eventType != 'regular'">
+      {{chapterData.eventType}}
+    </ion-note>
+    <!--wrap the description for unimportant chapters, but not for important ones-->
+    <ion-item text-wrap *ngIf="chapterData.textDescription != null && chapterData.isImportant">
       {{chapterData.textDescription}}
     </ion-item>
-  </div>
-  <div *ngIf="!chapterData.isImportant">
-    <ion-item text-nowrap>
-      <ion-thumbnail item-left>
-        <img *ngIf="chapterData.pictureURLs != null" [src]="chapterData.pictureURLs[0] | cdvphotolibrary">
-      </ion-thumbnail>
-      <div class="left">
-        {{chapterData.title}}
-      </div>
-      <div class="right">
-        {{chapterData.amountStr}}
-      </div>
+    <ion-item text-nowrap *ngIf="chapterData.textDescription != null && !chapterData.isImportant">
       {{chapterData.textDescription}}
     </ion-item>
-  </div>
+  </ion-item>
 </ion-card>
