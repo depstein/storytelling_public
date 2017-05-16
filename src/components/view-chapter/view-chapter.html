@@ -14,20 +14,36 @@
       </button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-slides *ngIf="chapterData.pictureURLs != null">
-    <ion-slide *ngFor="let url of chapterData.pictureURLs">
-      <img [src]="url | cdvphotolibrary">
-    </ion-slide>
-  </ion-slides>
-  <ion-item>
-    <div class="left">
-      {{chapterData.title}}
-    </div>
-    <div class="right">
-      {{chapterData.amountStr}}
-    </div>
-  </ion-item>
-  <ion-item text-nowrap *ngIf="chapterData.textDescription != null">
-    {{chapterData.textDescription}}
-  </ion-item>
+  <div *ngIf="chapterData.isImportant">
+    <ion-slides *ngIf="chapterData.pictureURLs != null">
+      <ion-slide *ngFor="let url of chapterData.pictureURLs">
+        <img [src]="url | cdvphotolibrary">
+      </ion-slide>
+    </ion-slides>
+    <ion-item>
+      <div class="left">
+        {{chapterData.title}}
+      </div>
+      <div class="right">
+        {{chapterData.amountStr}}
+      </div>
+    </ion-item>
+    <ion-item text-nowrap *ngIf="chapterData.textDescription != null">
+      {{chapterData.textDescription}}
+    </ion-item>
+  </div>
+  <div *ngIf="!chapterData.isImportant">
+    <ion-item text-nowrap>
+      <ion-thumbnail item-left>
+        <img *ngIf="chapterData.pictureURLs != null" [src]="chapterData.pictureURLs[0] | cdvphotolibrary">
+      </ion-thumbnail>
+      <div class="left">
+        {{chapterData.title}}
+      </div>
+      <div class="right">
+        {{chapterData.amountStr}}
+      </div>
+      {{chapterData.textDescription}}
+    </ion-item>
+  </div>
 </ion-card>
