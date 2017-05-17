@@ -39,26 +39,32 @@
   </ion-item>
   <ion-item-divider>Details</ion-item-divider>
     <ion-item>
-      <ion-input placeholder="Title" [(ngModel)]="title"></ion-input>
+      <ion-label color="primary" fixed>Title</ion-label>
+      <ion-input [(ngModel)]="title"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-datetime displayFormat="DDDD, MMMM D" pickerFormat="MMMM/D/YYYY" placeholder="Date" [(ngModel)]="date"></ion-datetime>
+      <ion-label color="primary" fixed>Date</ion-label>
+      <ion-datetime displayFormat="DDDD, MMMM D" pickerFormat="MMMM/D/YYYY" [(ngModel)]="date"></ion-datetime>
     </ion-item>
     <ion-item>
-      <ion-textarea placeholder="Description" [(ngModel)]="description"></ion-textarea>
+      <ion-label color="primary" fixed>Description</ion-label>
+      <ion-textarea [(ngModel)]="description"></ion-textarea>
     </ion-item>
   <button ion-item *ngIf="chapterData.chapterType == 'running'" (click)="addPhotos()">
   Add Photo(s)
   </button>
   <ion-item-divider>Logistics</ion-item-divider>
   <ion-item *ngIf="chapterData.chapterType == 'running'">
-    <ion-input type="number" placeholder="Distance" [(ngModel)]="distance"></ion-input>
+    <ion-label color="primary" fixed>Distance (mi)</ion-label>
+    <ion-input type="number" [(ngModel)]="distance"></ion-input>
   </ion-item>
   <ion-item *ngIf="chapterData.chapterType == 'running'">
-    <ion-input type="number" placeholder="Duration" [(ngModel)]="duration"></ion-input>
+    <ion-label color="primary" fixed>Time (min)</ion-label>
+    <ion-input type="number" [(ngModel)]="duration"></ion-input>
   </ion-item>
   <ion-item *ngIf="chapterData.chapterType == 'diy'">
-    <ion-input type="number" placeholder="Work time" [(ngModel)]="worktime"></ion-input>
+    <ion-label color="primary" fixed>Work Time (min)</ion-label>
+    <ion-input type="number" [(ngModel)]="worktime"></ion-input>
   </ion-item>
   </ion-item-group>
 </ion-content>
