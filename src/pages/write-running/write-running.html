@@ -8,12 +8,18 @@
 
   <ion-navbar>
     <ion-title>Select a Run</ion-title>
+    <ion-buttons right>
+      <button ion-button (click)="nextPage()">
+        Next
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
+  Pick a run, or click "next" to log without a run.
   <ion-list radio-group [(ngModel)]="runIdSelected.run" name="run" [virtualScroll]="allRuns" approxItemHeight="100px">
     <button ion-item *virtualItem="let item" (click)="selectedRun(item.id)" [disabled]="isDisabled(item.id)">
       <ion-thumbnail item-right>

@@ -28,7 +28,7 @@
     <!--if this chapter is important, but there's only one image, display it-->
     <img  *ngIf="chapterData.pictureURLs != null && chapterData.isImportant && chapterData.pictureURLs.length == 1" [src]="chapterData.pictureURLs[0] | cdvphotolibrary">
     <!--if the chapter isn't important, display any image as a thumbnail-->
-    <ion-thumbnail *ngIf="chapterData.pictureURLs != null && !chapterData.isImportant" item-left>
+    <ion-thumbnail *ngIf="chapterData.pictureURLs != null && chapterData.pictureURLs.length > 0 && !chapterData.isImportant" item-left>
       <img [src]="chapterData.pictureURLs[0] | cdvphotolibrary">
     </ion-thumbnail>
     <div *ngIf="chapterData.title != null" class="left title">

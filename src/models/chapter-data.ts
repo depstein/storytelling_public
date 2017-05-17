@@ -44,7 +44,9 @@ export class ChapterData {
             if(!this.photos) {
                 photoUrls = [];
             }
-            photoUrls.unshift(this.run.staticMapUrl);
+            if(this.run) {
+                photoUrls.unshift(this.run.staticMapUrl);
+            }
         }
         return photoUrls;
     }
@@ -53,7 +55,11 @@ export class ChapterData {
         if(this.chapterType == 'diy') {
             return this.minutesWorked + " min";
         } else {
-            return this.run.distanceStr + " miles";
+            if(this.run) {
+                return this.run.distanceStr + " miles";
+            } else {
+                return null;
+            }
         }
     }
 

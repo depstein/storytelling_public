@@ -36,7 +36,7 @@ export class AddDetailPage {
     this.chapterData = this.navParams.get("chapterData");
     this.title = this.chapterData.title;
     this.date = this.chapterData.timestampISO;
-    if(this.chapterData.chapterType == 'running') {
+    if(this.chapterData.chapterType == 'running' && this.chapterData.run) {
       this.distance = this.chapterData.run.distanceStr;
       this.duration = this.chapterData.run.durationReadable;
     }

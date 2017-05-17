@@ -70,6 +70,11 @@ export class WriteRunningPage {
     this.navCtrl.push(AddDetailPage, {chapterData:chapterData});
   }
 
+  nextPage() {
+    let chapterData: ChapterData = new ChapterData('running');
+    this.navCtrl.push(AddDetailPage, {chapterData:chapterData});
+  }
+
   isDisabled(id) {
     return this.dataStore.runIdExists(id);
   }
