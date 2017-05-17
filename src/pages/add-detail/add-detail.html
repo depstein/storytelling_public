@@ -18,7 +18,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <ion-item-group>
   <ion-item-divider>Chapter Type</ion-item-divider>
   <ion-item>
@@ -40,7 +40,7 @@
   <ion-item-divider>Details</ion-item-divider>
     <ion-item>
       <ion-label color="primary" fixed>Title</ion-label>
-      <ion-input [(ngModel)]="title"></ion-input>
+      <ion-input [(ngModel)]="title" placeholder="What did you do?"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary" fixed>Date</ion-label>
@@ -48,7 +48,7 @@
     </ion-item>
     <ion-item>
       <ion-label color="primary" fixed>Description</ion-label>
-      <ion-textarea [(ngModel)]="description"></ion-textarea>
+      <ion-textarea [(ngModel)]="description" placeholder="[TODO] How was the thing?"></ion-textarea>
     </ion-item>
   <button ion-item *ngIf="chapterData.chapterType == 'running'" (click)="addPhotos()">
   Add Photo(s)
@@ -63,7 +63,7 @@
     <ion-input type="number" [(ngModel)]="duration"></ion-input>
   </ion-item>
   <ion-item *ngIf="chapterData.chapterType == 'diy'">
-    <ion-label color="primary" fixed>Work Time (min)</ion-label>
+    <ion-label color="primary" fixed>Mins Worked</ion-label>
     <ion-input type="number" [(ngModel)]="worktime"></ion-input>
   </ion-item>
   </ion-item-group>

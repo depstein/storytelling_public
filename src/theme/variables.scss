@@ -38,14 +38,14 @@ $colors: (
 // iOS only Sass variables can go here
 
 $button-ios-small-height: 1em;
-$item-ios-padding-left:  2px;
-$item-ios-padding-right:  2px;
+$item-ios-padding-left:  0px;
+$item-ios-padding-right:  0px;
 $item-ios-padding-bottom: 5px;
 $item-ios-padding-top: 5px;
-$card-ios-margin-left: 2px;
-$card-ios-margin-right: 2px;
-$card-ios-margin-bottom: 2px;
-$card-ios-margin-top: 2px;
+$card-ios-margin-left: 5px;
+$card-ios-margin-right: 5px;
+$card-ios-margin-bottom: 5px;
+$card-ios-margin-top: 5px;
 $card-ios-border-radius: 5px;
 $card-ios-box-shadow-color: color($colors, borders);
 $card-ios-box-shadow: 0 0 0 1px $card-ios-box-shadow-color;

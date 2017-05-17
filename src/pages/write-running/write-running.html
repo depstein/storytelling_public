@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <ion-list radio-group [(ngModel)]="runIdSelected.run" name="run" [virtualScroll]="allRuns" approxItemHeight="100px">
     <button ion-item *virtualItem="let item" (click)="selectedRun(item.id)" [disabled]="isDisabled(item.id)">
       <ion-thumbnail item-right>

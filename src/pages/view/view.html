@@ -23,8 +23,9 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <h1 *ngIf="chapters?.length == 0">There's nothing in your story right now. Go add something!</h1>
+    <ion-item padding no-lines>
     <ion-segment *ngIf="chapters?.length > 0" [(ngModel)]="chapterView">
       <ion-segment-button value="timeline" (ionSelect)="selectedTimeline()">
         Timeline
@@ -33,6 +34,7 @@
         Graph
       </ion-segment-button>
     </ion-segment>
+    </ion-item>
   <div [hidden]="!onTimelinePage">
     <ion-item *ngFor="let chapter of chapters" no-lines>
       <view-chapter [chapterData]="chapter"></view-chapter>
