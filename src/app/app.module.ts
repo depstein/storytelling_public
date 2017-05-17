@@ -5,10 +5,6 @@ import { SettingsPage } from '../pages/settings/settings';
 import { WritePage } from '../pages/write/write';
 import { ViewPage } from '../pages/view/view';
 import { AddDetailPage } from '../pages/add-detail/add-detail';
-import { AddTextDescriptionPage } from '../pages/add-text-description/add-text-description';
-import { AddExpensesPage } from '../pages/add-expenses/add-expenses';
-import { AddEmotionPage } from '../pages/add-emotion/add-emotion';
-import { AddPacePage } from '../pages/add-pace/add-pace';
 import { AddPhotosPage } from '../pages/add-photos/add-photos';
 import { WriteDiyPage } from '../pages/write-diy/write-diy';
 import { WriteRunningPage } from '../pages/write-running/write-running';
@@ -32,10 +28,6 @@ export const deepLinkConfig: DeepLinkConfig = {
     MyApp,
     SettingsPage,
     AddDetailPage,
-    AddTextDescriptionPage,
-    AddExpensesPage,
-    AddEmotionPage,
-    AddPacePage,
     AddPhotosPage,
     WritePage,
     ViewPage,
@@ -59,10 +51,6 @@ export const deepLinkConfig: DeepLinkConfig = {
   entryComponents: [
     MyApp,
     AddDetailPage,
-    AddTextDescriptionPage,
-    AddExpensesPage,
-    AddEmotionPage,
-    AddPacePage,
     AddPhotosPage,
     SettingsPage,
     WritePage,
