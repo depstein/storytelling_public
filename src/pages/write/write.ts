@@ -37,20 +37,4 @@ export class WritePage {
       this.navCtrl.push(WriteRunningPage, {});
     }
   }
-
-  //TODO: revisit whether it's a good idea to repurpose the AddDetailPage for this.
-  //On one hand, it is adding details.
-  //But are the details sufficiently different that it's confusing?
-  writeSetback(chapterType:string = this.storyType) {
-    var chapterData = new ChapterData(chapterType, 'setback');
-    this.navCtrl.push(AddDetailPage, {'chapterData': chapterData});
-  }
-
-  //TODO: revisit whether it's a good idea to repurpose the AddDetailPage for this.
-  //On one hand, it is adding details.
-  //But are the details sufficiently different that it's confusing?
-  writeHappening(chapterType:string = this.storyType) {
-    var chapterData = new ChapterData(chapterType, 'happening');
-    this.navCtrl.push(AddDetailPage, {'chapterData': chapterData});
-  }
 }

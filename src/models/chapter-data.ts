@@ -7,8 +7,8 @@ export class ChapterData {
     timestamp:any; //TODO: should this field be private, since photos/whatever will each have their own moments?
     id:string;
     chapterType:string = 'undefined';//options: 'undefined', 'diy', 'running'.
-    eventType:string = 'regular'; //options: 'regular', 'setback'. Add 'happening', 'completion', and 'start' eventually
-    title:string = 'An Interesting Chapter';
+    eventType:string = 'regular'; //options: 'regular', 'setback', 'moment', 'milestone'. Probably 'start' and 'finish' eventually.
+    title:string = null;
     isImportant:boolean = false;
     photos:PhotoData[] = null;
     run:RunningData = null;
@@ -17,15 +17,18 @@ export class ChapterData {
     expenses:number = null;
     emotion:string = null; //TODO: make this more complicated eventually, probably it's own object
 
-    constructor(chapterType:string, eventType:string) {
+    constructor(chapterType:string) {
      this.id = shortid.generate();
      this.chapterType = chapterType;
-     this.eventType = eventType;
      this.timestamp = moment();
     }
 
     get timestampStr() {
         return this.timestamp.format('dddd, MMMM Do');
+    }
+
+    get timestampISO() {
+        return this.timestamp.format();
     }
 
     get minutesStr() {
@@ -53,6 +56,10 @@ export class ChapterData {
             return this.run.distanceStr + " miles";
         }
     }
+
+    addEventType(eventType:string) {
+        this.eventType = eventType;
+    }
     
     addPictures(photos:PhotoData[]) {
         this.photos = photos;
@@ -73,6 +80,10 @@ export class ChapterData {
 
     addTextDescription(textDescription:string) {
         this.textDescription = textDescription;
+    }
+
+    addDate(date:string) {
+        this.timestamp = moment(date);
     }
 
     addExpenses(expenses:number) {

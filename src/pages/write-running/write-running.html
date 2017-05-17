@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Add Chapter</ion-title>
+    <ion-title>Select a Run</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,26 +15,14 @@
 
 <ion-content padding>
   <ion-list radio-group [(ngModel)]="runIdSelected.run" name="run" [virtualScroll]="allRuns" approxItemHeight="100px">
-    <ion-item *virtualItem="let item" style="height:100px">
+    <button ion-item *virtualItem="let item" (click)="selectedRun(item.id)" [disabled]="isDisabled(item.id)">
       <ion-thumbnail item-right>
         <!--This should supposedly be an ion-img. I couldn't get it to load... so hopefully this doesn't come back to bite me later.-->
         <img [src]="item.staticMapUrl">
       </ion-thumbnail>
-      <!--<div item-right [id]="item.id" style='width: 200px; height:100px;'></div>-->
       <ion-label>
         {{item.timestampStr}}
       </ion-label>
-      <ion-radio item-left [value]="item.id" (ionSelect)="selectedRun(item.id)" [disabled]="isDisabled(item.id)"></ion-radio>
-    </ion-item>
+    </button>
   </ion-list>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar position="bottom">
-    <ion-item>
-      <ion-label color="primary">Miles ran</ion-label>
-      <ion-input type="number" [(ngModel)]="distanceStr"></ion-input>
-    </ion-item>
-    <button ion-button full color="secondary" type="submit" (click)="logForm()">Next</button>
-  </ion-toolbar>
-</ion-footer>

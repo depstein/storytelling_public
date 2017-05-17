@@ -66,13 +66,13 @@ export class DataStorage {
 
   public preloadRunning(runs:RunningData[]) {
     //TODO: Super ad-hoc. Consider formalizing this process.
-    var chapter1 = new ChapterData('running', 'regular');
+    var chapter1 = new ChapterData('running');
     chapter1.addRun(runs[0]);
     chapter1.addTextDescription("That was a hard one! But I'm glad I did it.");
     chapter1.addTitle('A hard run');
     chapter1.setImportance(true);
     this.addChapter(chapter1);
-    var chapter2 = new ChapterData('running', 'regular');
+    var chapter2 = new ChapterData('running');
     chapter2.addRun(runs[3]);
     chapter2.addTitle('An unfortunate run');
     chapter2.run.displayPace = true;
@@ -82,7 +82,7 @@ export class DataStorage {
 
   public preloadDiy(photos:PhotoData[]) {
     //TODO: Super ad-hoc. Consider formalizing this process.
-    var chapter1 = new ChapterData('diy', 'regular');
+    var chapter1 = new ChapterData('diy');
     chapter1.addPictures([photos[0], photos[2]]);
     chapter1.addTextDescription('Spent a lot of time today! Feeling good about my progress.');
     chapter1.addEmotion('happy');
@@ -90,7 +90,7 @@ export class DataStorage {
     chapter1.addMinutesWorked(240);
     chapter1.setImportance(true);
     this.addChapter(chapter1);
-    var chapter2 = new ChapterData('diy', 'regular');
+    var chapter2 = new ChapterData('diy');
     chapter2.addPictures([photos[3]]);
     chapter2.addTitle('A lot of progress');
     chapter2.addExpenses(30);

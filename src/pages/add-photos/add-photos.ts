@@ -20,7 +20,13 @@ export class AddPhotosPage {
   allImages: PhotoData[] = [];
   pictureIdsSelected: any = {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform:Platform, private photos : LocalPhotos, public viewCtrl : ViewController) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public platform:Platform, private photos : LocalPhotos, public viewCtrl : ViewController) {
+    let idsSelected = this.navParams.get('idsSelected');
+    if(idsSelected != null) {
+      //Make a deep copy the ids, so that if you cancel you're not impacting the passed list.
+      this.pictureIdsSelected = Object.assign({}, idsSelected);
+    }
+  }
 
   ionViewDidLoad() {
     this.platform.ready().then(() => {
@@ -36,8 +42,9 @@ export class AddPhotosPage {
     this.viewCtrl.dismiss();
   }
 
-  logForm() {
-   this.viewCtrl.dismiss(this.photos.getPhotosFromIDs(Object.keys(this.pictureIdsSelected)));
+  savePhotos() {
+  console.log(this.pictureIdsSelected);
+   this.viewCtrl.dismiss(this.photos.getPhotosFromIDs(Object.keys(this.pictureIdsSelected).filter((id) => {return this.pictureIdsSelected[id];})));
   }
 
 }

@@ -21,84 +21,60 @@ import { DataStorage } from '../../providers/data-storage';
 })
 export class AddDetailPage {
   chapterData:ChapterData;
-  params:any = {};
+  eventType:string = "progress";
+  title:string = null;
+  date:string = "2017-01-01";
   description:string = null;
-  descriptionPrompt:string = "What happened? [TODO: Ask Mira about better prompts here]";
-  //Variables on whether to hide each parameter
-  hidePhotos = false;
+  photos:any = null;
+  distance:string = null;
+  duration:number = null;
+  workTime:number = null;
+
+  params:any = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private dataStore:DataStorage, public modalCtrl: ModalController) {
     this.chapterData = this.navParams.get("chapterData");
+    this.title = this.chapterData.title;
+    this.date = this.chapterData.timestampISO;
+    if(this.chapterData.chapterType == 'running') {
+      this.distance = this.chapterData.run.distanceStr;
+      this.duration = this.chapterData.run.durationReadable;
+    }
     this.params = {chapterData: this.chapterData};
-    //Set all the variables on hiding parameters
-    this.hidePhotos = this.chapterData.chapterType == 'diy' && this.chapterData.eventType == 'regular';
   }
 
   ionViewDidLoad() {
   }
 
-  openExpenses() {
-    let modal = this.modalCtrl.create(AddExpensesPage);
-    modal.onDidDismiss(data => {
-      if(data) {
-        this.chapterData.addExpenses(data);
-      }
-    })
-    modal.present();
-  }
-
-  openEmotion() {
-    let modal = this.modalCtrl.create(AddEmotionPage);
-    modal.onDidDismiss(data => {
-      if(data) {
-        this.chapterData.addEmotion(data);
-      }
-    })
-    modal.present();
-  }
-
-  openPace() {
-    let modal = this.modalCtrl.create(AddPacePage, {runData:this.chapterData.run});
-    modal.onDidDismiss(data => {
-      if(this.chapterData.run && data) {
-        this.chapterData.run.addPaceDuration(data);
-      }
-    })
-    modal.present();
-  }
-
-  openPhotos() {
-    let modal = this.modalCtrl.create(AddPhotosPage);
-    modal.onDidDismiss(data => {
-      if(data) {
-        this.chapterData.addPictures(data);
-      }
-    })
-    modal.present();
-  }
-
-  getExpensesColor() {
-    return this.chapterData.expenses ? "light" : "default";
-  }
-
-  getEmotionColor() {
-    return this.chapterData.emotion ? "light" : "default";
-  }
-
-  getPaceColor() {
-    return (this.chapterData.run.displayDuration || this.chapterData.run.displayPace) ? "light" : "default";
-  }
-  
-  getPhotosColor() {
-    return this.chapterData.photos ? "light" : "default";
-  }
-
-  reviewChapter() {
+  saveChapter() {
+    this.chapterData.addEventType(this.eventType);
+    this.chapterData.addTitle(this.title);
+    this.chapterData.addDate(this.date);
     if(this.description != null) {
       this.chapterData.addTextDescription(this.description);
     }
-    this.dataStore.addChapter(this.chapterData);
+    if(this.distance != null) {
+      this.chapterData.run.addDistance(parseFloat(this.distance));
+    }
+    if(this.duration != null) {
+      this.chapterData.run.addDuration(this.duration * 60);
+    }
+    if(this.workTime != null) {
+      this.chapterData.addMinutesWorked(this.workTime);
+    }
     this.navCtrl.push(ReviewChapterPage, {chapterData:this.chapterData});
+  }
+
+  addPhotos() {
+    let modal = this.modalCtrl.create(AddPhotosPage, {idsSelected: this.photos});
+    modal.onDidDismiss(data => {
+      if(data) {
+        this.chapterData.addPictures(data);
+        this.photos = {};
+        data.forEach((d) => {this.photos[d.id] = true;});
+      }
+    })
+    modal.present();
   }
 
 }

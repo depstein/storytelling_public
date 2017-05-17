@@ -7,15 +7,63 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Add More Details</ion-title>
+    <ion-title>Create a New Chapter</ion-title>
+    <ion-buttons right>
+      <button ion-button (click)="saveChapter()">
+        Save
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  How about adding some details about your chapter?
+  <ion-item-group>
+  <ion-item-divider>Chapter Type</ion-item-divider>
   <ion-item>
+    <ion-segment [(ngModel)]="eventType">
+      <ion-segment-button value="progress">
+        Progress
+      </ion-segment-button>
+      <ion-segment-button value="moment">
+        Moment
+      </ion-segment-button>
+      <ion-segment-button value="milestone">
+        Milestone
+      </ion-segment-button>
+      <ion-segment-button value="setback">
+        Setback
+      </ion-segment-button>
+    </ion-segment>
+  </ion-item>
+  <ion-item-divider>Details</ion-item-divider>
+    <ion-item>
+      <ion-input placeholder="Title" [(ngModel)]="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-datetime displayFormat="DDDD, MMMM D" pickerFormat="MMMM/D/YYYY" placeholder="Date" [(ngModel)]="date"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-textarea placeholder="Description" [(ngModel)]="description"></ion-textarea>
+    </ion-item>
+  <button ion-item *ngIf="chapterData.chapterType == 'running'" (click)="addPhotos()">
+  Add Photo(s)
+  </button>
+  <ion-item-divider>Logistics</ion-item-divider>
+  <ion-item *ngIf="chapterData.chapterType == 'running'">
+    <ion-input type="number" placeholder="Distance" [(ngModel)]="distance"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="chapterData.chapterType == 'running'">
+    <ion-input type="number" placeholder="Duration" [(ngModel)]="duration"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="chapterData.chapterType == 'diy'">
+    <ion-input type="number" placeholder="Work time" [(ngModel)]="worktime"></ion-input>
+  </ion-item>
+  </ion-item-group>
+</ion-content>
+<!--
+<ion-item>
     <ion-label stacked>{{descriptionPrompt}}</ion-label>
     <ion-textarea [(ngModel)]="description" name="description" rows="4"></ion-textarea>
   </ion-item>
@@ -46,4 +94,4 @@
   <button ion-button full color="secondary" (click)="reviewChapter()">
     Review Chapter
   </button>
-</ion-content>
+-->

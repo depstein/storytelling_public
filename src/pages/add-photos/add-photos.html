@@ -7,10 +7,17 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>AddPhotos</ion-title>
-    <button (click)="dismiss()">
-      <ion-icon name="close"></ion-icon>
-    </button>
+    <ion-buttons right>
+      <button ion-button (click)="savePhotos()">
+        Save
+      </button>
+    </ion-buttons>
+    <ion-title>Add Photo(s)</ion-title>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -18,5 +25,4 @@
 
 <ion-content padding>
   <photo-selector [allImages]="allImages" [pictureIdsSelected]="pictureIdsSelected"></photo-selector>
-  <button ion-button full color="secondary" type="submit" (click)="logForm()">Submit</button>
 </ion-content>

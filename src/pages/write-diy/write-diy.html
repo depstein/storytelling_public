@@ -7,7 +7,12 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Add Chapter</ion-title>
+    <ion-title>Select Photo(s)</ion-title>
+    <ion-buttons right>
+      <button ion-button (click)="nextPage()">
+        Next
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -16,13 +21,3 @@
 <ion-content padding>
   <photo-selector [allImages]="allImages" [pictureIdsSelected]="pictureIdsSelected"></photo-selector>
 </ion-content>
-
-<ion-footer>
-    <ion-toolbar position="bottom">
-      <ion-item>
-        <ion-label color="primary">Minutes worked</ion-label>
-        <ion-input type="number" [(ngModel)]="minuteStr"></ion-input>
-      </ion-item>
-      <button ion-button full color="secondary" type="submit" (click)="logForm()">Next</button>
-    </ion-toolbar>
-</ion-footer>

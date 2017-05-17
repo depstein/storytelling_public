@@ -22,7 +22,6 @@ export class WriteDiyPage {
   @Input('photo-selector') photoSelector: PhotoSelectorComponent;
 
   allImages: PhotoData[] = [];
-  minutesWorked:number = 0;
   pictureIdsSelected: any = {};
   public static preloadFakeData:boolean = true;
 
@@ -43,18 +42,8 @@ export class WriteDiyPage {
     });
   }
 
-  //For reasons I don't understand, the data binding will revert to a string unless this is undertaken.
-  set minuteStr(s:string) {
-    this.minutesWorked = parseInt(s);
-  }
-
-  get minuteStr() {
-    return this.minutesWorked.toString();
-  }
-
-  logForm() {
-    let chapterData: ChapterData = new ChapterData('diy', 'regular');
-    chapterData.addMinutesWorked(this.minutesWorked);
+  nextPage() {
+    let chapterData: ChapterData = new ChapterData('diy');
     chapterData.addPictures(this.photos.getPhotosFromIDs(Object.keys(this.pictureIdsSelected)));
     this.navCtrl.push(AddDetailPage, {chapterData:chapterData});
   }
