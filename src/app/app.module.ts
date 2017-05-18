@@ -15,6 +15,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { ChapterCardComponent } from '../components/chapter-card/chapter-card';
+import { RunSelectorComponent } from '../components/run-selector/run-selector';
 
 export const deepLinkConfig: DeepLinkConfig = {
   links: [
@@ -39,6 +40,7 @@ export const deepLinkConfig: DeepLinkConfig = {
     PhotoSelectorComponent,
     //Providers
     CDVPhotoLibraryPipe,
+    RunSelectorComponent,
   ],
   imports: [
     BrowserModule,

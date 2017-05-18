@@ -1,9 +1,10 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, Input } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { AddDetailPage } from '../add-detail/add-detail';
 import { ChapterData } from '../../models/chapter-data';
 import { RunningData } from '../../models/running-data';
 import { StravaRuns } from '../../providers/strava-runs';
+import { RunSelectorComponent } from '../../components/run-selector/run-selector';
 import { DataStorage } from '../../providers/data-storage';
 
 /*
@@ -20,8 +21,8 @@ declare var mapboxgl;
   providers: [ StravaRuns, DataStorage ]
 })
 export class WriteRunningPage {
+  @Input('run-selector') runSelector: RunSelectorComponent;
   allRuns: RunningData[] = [];
-  runIdSelected: any = {};
   public static preloadFakeData:boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public platform:Platform, private runs : StravaRuns, private dataStore:DataStorage, private ngz:NgZone) {
@@ -63,20 +64,9 @@ export class WriteRunningPage {
     
   }
 
-  selectedRun(id) {
-    let chapterData: ChapterData = new ChapterData('running');
-    let run:RunningData = this.runs.getRunFromId(id);
-    chapterData.addRun(run);
-    this.navCtrl.push(AddDetailPage, {chapterData:chapterData, addMode:true});
-  }
-
   nextPage() {
     let chapterData: ChapterData = new ChapterData('running');
     this.navCtrl.push(AddDetailPage, {chapterData:chapterData, addMode:true});
-  }
-
-  isDisabled(id) {
-    return this.dataStore.runIdExists(id);
   }
 
 }
