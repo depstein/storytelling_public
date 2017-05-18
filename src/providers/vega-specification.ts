@@ -26,9 +26,13 @@ export class VegaSpecification {
         var cumulative = 0;
         var vegaData = chapterData.map((chapter:ChapterData) => {
           if(chapter.chapterType == 'running') {
-            cumulative += chapter.run.distance;
-          } else {
-            cumulative += chapter.minutesWorked;
+            if(chapter.run && chapter.run.distance) {
+              cumulative += chapter.run.distance;
+            }
+          } else { //diy
+            if(chapter.minutesWorked) {
+              cumulative += chapter.minutesWorked;
+            }
           }
           return {"id":chapter.id, "date":chapter.timestamp.toDate(), "amount":cumulative};
         });

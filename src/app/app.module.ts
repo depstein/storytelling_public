@@ -9,12 +9,12 @@ import { AddPhotosPage } from '../pages/add-photos/add-photos';
 import { WriteDiyPage } from '../pages/write-diy/write-diy';
 import { WriteRunningPage } from '../pages/write-running/write-running';
 import { ReviewChapterPage } from '../pages/review-chapter/review-chapter';
-import { ViewChapterComponent } from '../components/view-chapter/view-chapter';
 import { PhotoSelectorComponent } from '../components/photo-selector/photo-selector';
 import { CDVPhotoLibraryPipe } from '../providers/cdvphotolibrary.pipe';
 import { IonicStorageModule } from '@ionic/storage';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
+import { ChapterCardComponent } from '../components/chapter-card/chapter-card';
 
 export const deepLinkConfig: DeepLinkConfig = {
   links: [
@@ -35,7 +35,7 @@ export const deepLinkConfig: DeepLinkConfig = {
     WriteRunningPage,
     ReviewChapterPage,
     //Components
-    ViewChapterComponent,
+    ChapterCardComponent,
     PhotoSelectorComponent,
     //Providers
     CDVPhotoLibraryPipe,
@@ -58,7 +58,7 @@ export const deepLinkConfig: DeepLinkConfig = {
     WriteDiyPage,
     WriteRunningPage,
     ReviewChapterPage,
-    ViewChapterComponent
+    ChapterCardComponent,
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Storage ]
 })

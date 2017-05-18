@@ -7,15 +7,67 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Review Chapter</ion-title>
+    <ion-title *ngIf="chapterData.title != null">{{chapterData.title}}</ion-title>
+    <ion-title *ngIf="chapterData.title == null">{{chapterData.title}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  Your chapter has been added to your story!
-  <view-chapter [chapterData]="chapterData"></view-chapter>
+<ion-content>
+    <!--use slides if there's more than one picture-->
+    <ion-slides *ngIf="chapterData.pictureURLs != null && chapterData.pictureURLs.length > 1" pager>
+      <ion-slide *ngFor="let url of chapterData.pictureURLs">
+        <img [src]="url | cdvphotolibrary">
+      </ion-slide>
+    </ion-slides>
+    <!--if there's only one picture, display it-->
+    <img  *ngIf="chapterData.pictureURLs != null && chapterData.pictureURLs.length == 1" [src]="chapterData.pictureURLs[0] | cdvphotolibrary">
+    <ion-item text-wrap *ngIf="chapterData.textDescription != null">
+      {{chapterData.textDescription}}
+    </ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-label>
+          Date
+        </ion-label>
+        <div item-content>
+          {{chapterData.timestampStr}}
+        </div>
+      </ion-item>
+      <ion-item *ngIf="chapterData.chapterType == 'running' && chapterData.run">
+        <ion-label>
+          Distance
+        </ion-label>
+        <div item-content>
+          {{chapterData.run.distanceStr}} miles
+        </div>
+      </ion-item>
+      <ion-item *ngIf="chapterData.chapterType == 'running' && chapterData.run">
+        <ion-label>
+          Duration
+        </ion-label>
+        <div item-content>
+          {{chapterData.run.durationReadable}} minutes
+        </div>
+      </ion-item>
+      <ion-item *ngIf="chapterData.chapterType == 'diy'">
+        <ion-label>
+          Work Duration
+        </ion-label>
+        <div item-content>
+          {{chapterData.minutesWorked}} minutes
+        </div>
+      </ion-item>
+    <ion-item *ngIf="chapterData.eventType != null">
+      <ion-label>
+        Chapter Type
+      </ion-label>
+      <div item-content>
+        {{chapterData.eventType}}
+      </div>
+    </ion-item>
+  </ion-list>
   <button ion-button full (click)="share()">
     Send to Facebook
   </button>
@@ -27,8 +79,5 @@
   </button>
   <button ion-button full (click)="share()">
     Send to Text
-  </button>
-  <button ion-button full color="secondary" (click)="completeChapter()">
-    Complete Chapter
   </button>
 </ion-content>

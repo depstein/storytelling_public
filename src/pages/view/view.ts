@@ -1,7 +1,7 @@
 import { Component, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { NavController, NavParams, Platform, ModalController } from 'ionic-angular';
 import { ChapterData } from '../../models/chapter-data';
-import { ViewChapterComponent } from '../../components/view-chapter/view-chapter';
+import { ChapterCardComponent } from '../../components/chapter-card/chapter-card';
 import { DataStorage } from '../../providers/data-storage';
 import { VegaSpecification } from '../../providers/vega-specification';
 import { WritePage } from '../write/write';
@@ -21,7 +21,7 @@ import * as vega from 'vega';
   providers: [ DataStorage, VegaSpecification ]
 })
 export class ViewPage implements AfterViewInit {
-  @Input('view-chapter') viewChapter: ViewChapterComponent;
+  @Input('chapter-card') chapterCard: ChapterCardComponent;
   @ViewChild('chart') chart:ElementRef;
   chapters:ChapterData[] = [];
   chapterView:string = "timeline";

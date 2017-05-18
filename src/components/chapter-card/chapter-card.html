@@ -1,10 +1,4 @@
-<!--
-  Generated template for the ViewChapter component.
-
-  See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
-  for more info on Angular 2 Components.
--->
-
+<!-- Generated template for the ChapterCardComponent component -->
 <ion-card *ngIf="chapterData != null">
   <ion-item>
     <ion-row>
@@ -12,7 +6,7 @@
         {{chapterData.timestampStr}}
       </ion-col>
       <ion-col right text-right>
-        <button ion-button small icon-only clear no-margin>
+        <button ion-button small icon-only clear no-margin (click)="reviewChapter()">
           <ion-icon name="more"></ion-icon>
         </button>
       </ion-col>

@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import { NavController, NavParams, Platform, ToastController } from 'ionic-angular';
 import { ChapterData } from '../../models/chapter-data';
-import { ViewChapterComponent } from '../../components/view-chapter/view-chapter';
 import { SocialSharing } from '@ionic-native/social-sharing';
 
 /*
@@ -16,14 +15,25 @@ import { SocialSharing } from '@ionic-native/social-sharing';
   providers: [ SocialSharing ]
 })
 export class ReviewChapterPage {
-  @Input('view-chapter') viewChapter: ViewChapterComponent;
   chapterData:ChapterData;
+  addedChapter:boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private platform : Platform, private social:SocialSharing) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private platform : Platform, private toastCtrl: ToastController, private social:SocialSharing) {
     this.chapterData = this.navParams.get("chapterData");
+    this.addedChapter = this.navParams.get("addedChapter");
   }
 
   ionViewDidLoad() {
+    if(this.addedChapter) {
+      let toast = this.toastCtrl.create({
+        message: 'Your chapter has been added to your story!',
+        duration: 3000,
+        position: 'top',
+        dismissOnPageChange: true
+      });
+
+      toast.present();
+    }
   }
 
   share() {
@@ -35,11 +45,6 @@ export class ReviewChapterPage {
         console.log(reason);
       });
     }
-  }
-
-  completeChapter() {
-    this.navCtrl.popToRoot();
-    this.navCtrl.parent.select(1);
   }
 
 }

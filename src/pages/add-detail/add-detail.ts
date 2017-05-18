@@ -62,7 +62,11 @@ export class AddDetailPage {
     if(this.workTime != null) {
       this.chapterData.addMinutesWorked(this.workTime);
     }
-    this.navCtrl.push(ReviewChapterPage, {chapterData:this.chapterData});
+
+    this.dataStore.addChapter(this.chapterData);
+    this.navCtrl.popToRoot().then(() => {
+      this.navCtrl.push(ReviewChapterPage, {chapterData:this.chapterData, addedChapter:true});
+    });
   }
 
   addPhotos() {

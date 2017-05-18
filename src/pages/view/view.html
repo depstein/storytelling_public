@@ -37,12 +37,12 @@
     </ion-item>
   <div [hidden]="!onTimelinePage">
     <ion-item *ngFor="let chapter of chapters" no-lines>
-      <view-chapter [chapterData]="chapter"></view-chapter>
+      <chapter-card [chapterData]="chapter"></chapter-card>
     </ion-item>
   </div>
   <div [hidden]="onTimelinePage">
     <div #chart></div>
-    <view-chapter *ngIf="focusChapter != null" [chapterData]="focusChapter"></view-chapter>
+    <chapter-card *ngIf="focusChapter != null" [chapterData]="focusChapter"></chapter-card>
   </div>
   
 </ion-content>
