@@ -4,7 +4,7 @@ import { PhotoData } from './photo-data';
 import { RunningData } from './running-data';
 
 export class ChapterData {
-    timestamp:any; //TODO: should this field be private, since photos/whatever will each have their own moments?
+    private _timestamp:any; //made this field private because I had bugs where things messed with it.
     id:string;
     chapterType:string = 'undefined';//options: 'undefined', 'diy', 'running'.
     eventType:string = 'regular'; //options: 'regular', 'setback', 'moment', 'milestone'. Probably 'start' and 'finish' eventually.
@@ -21,7 +21,7 @@ export class ChapterData {
     constructor(chapterType:string) {
      this.id = shortid.generate();
      this.chapterType = chapterType;
-     this.timestamp = moment();
+     this._timestamp = moment();
     }
 
     get timestampStr() {
@@ -30,6 +30,11 @@ export class ChapterData {
 
     get timestampISO() {
         return this.timestamp.format();
+    }
+
+    // Return a copy so nothing alterts the internal time.
+    get timestamp() {
+        return moment(this._timestamp);
     }
 
     get minutesStr() {
@@ -70,10 +75,11 @@ export class ChapterData {
     
     addPictures(photos:PhotoData[]) {
         this.photos = photos;
-        this.timestamp = moment().startOf('year');//Won't work if spanning multiple years
+        this._timestamp = moment().startOf('year');//Won't work if spanning multiple years
         photos.forEach((photo) => {
-            this.timestamp = moment.max(this.timestamp, photo.timestamp);
+            this._timestamp = moment.max(this.timestamp, photo.timestamp);
         });
+        //console.log(this.timestampStr);
     }
 
     addMinutesWorked(minutes:number) {
@@ -82,7 +88,7 @@ export class ChapterData {
 
     addRun(run:RunningData) {
         this.run = run;
-        this.timestamp = this.run.timestamp;
+        this._timestamp = this.run.timestamp;
     }
 
     addTextDescription(textDescription:string) {
@@ -90,7 +96,7 @@ export class ChapterData {
     }
 
     addDate(date:string) {
-        this.timestamp = moment(date);
+        this._timestamp = moment(date);
     }
 
     addExpenses(expenses:number) {

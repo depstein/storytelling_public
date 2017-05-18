@@ -34,7 +34,7 @@ export class DataStorage {
           DataStorage.chapters.push(DataStorage.chapterIds[id]);
         }
 
-        DataStorage.chapters.sort((a, b) => {return a.timestamp.isBefore(b.timestamp);} );
+        DataStorage.chapters.sort((a, b) => {return -a.timestamp.diff(b.timestamp);} );
         DataStorage.chapterArrayDirty = false;
       }
       resolve(DataStorage.chapters);
@@ -86,12 +86,14 @@ export class DataStorage {
     chapter1.addTextDescription("That was a hard one! But I'm glad I did it.");
     chapter1.addTitle('A hard run');
     chapter1.setImportance(true);
+    chapter1.addDate('2017-05-01');
     this.addChapter(chapter1);
     var chapter2 = new ChapterData('running');
     chapter2.addRun(runs[3]);
     chapter2.addTitle('An unfortunate run');
     chapter2.run.displayPace = true;
     chapter2.addEmotion('sad');
+    chapter2.addDate('2017-05-13');
     this.addChapter(chapter2);
   }
 
@@ -104,12 +106,14 @@ export class DataStorage {
     chapter1.addTitle('A good work session');
     chapter1.addMinutesWorked(240);
     chapter1.setImportance(true);
+    chapter1.addDate('2017-05-01');
     this.addChapter(chapter1);
     var chapter2 = new ChapterData('diy');
     chapter2.addPictures([photos[3]]);
     chapter2.addTitle('A lot of progress');
     chapter2.addExpenses(30);
     chapter2.addMinutesWorked(30);
+    chapter2.addDate('2017-05-13');
     this.addChapter(chapter2);
   }
 }
