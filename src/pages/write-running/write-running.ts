@@ -67,12 +67,12 @@ export class WriteRunningPage {
     let chapterData: ChapterData = new ChapterData('running');
     let run:RunningData = this.runs.getRunFromId(id);
     chapterData.addRun(run);
-    this.navCtrl.push(AddDetailPage, {chapterData:chapterData});
+    this.navCtrl.push(AddDetailPage, {chapterData:chapterData, addMode:true});
   }
 
   nextPage() {
     let chapterData: ChapterData = new ChapterData('running');
-    this.navCtrl.push(AddDetailPage, {chapterData:chapterData});
+    this.navCtrl.push(AddDetailPage, {chapterData:chapterData, addMode:true});
   }
 
   isDisabled(id) {

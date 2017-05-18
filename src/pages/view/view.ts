@@ -38,6 +38,10 @@ export class ViewPage implements AfterViewInit {
   }
 
   ionViewDidEnter() {
+    this.getAllChapters();
+  }
+
+  getAllChapters() {
     this.dataStore.getAllChapters().then((value:ChapterData[]) => {
       this.chapters = value;
       this.updateVegaChart();

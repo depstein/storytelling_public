@@ -45,7 +45,7 @@ export class WriteDiyPage {
   nextPage() {
     let chapterData: ChapterData = new ChapterData('diy');
     chapterData.addPictures(this.photos.getPhotosFromIDs(Object.keys(this.pictureIdsSelected)));
-    this.navCtrl.push(AddDetailPage, {chapterData:chapterData});
+    this.navCtrl.push(AddDetailPage, {chapterData:chapterData, addMode:true});
   }
 
 }

@@ -21,6 +21,7 @@ import { DataStorage } from '../../providers/data-storage';
 })
 export class AddDetailPage {
   chapterData:ChapterData;
+  addMode:boolean = false;
   eventType:string = "progress";
   title:string = null;
   date:string = "2017-01-01";
@@ -34,6 +35,7 @@ export class AddDetailPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private dataStore:DataStorage, public modalCtrl: ModalController) {
     this.chapterData = this.navParams.get("chapterData");
+    this.addMode = this.navParams.get("addMode");
     this.title = this.chapterData.title;
     this.date = this.chapterData.timestampISO;
     if(this.chapterData.chapterType == 'running' && this.chapterData.run) {
@@ -63,10 +65,14 @@ export class AddDetailPage {
       this.chapterData.addMinutesWorked(this.workTime);
     }
 
-    this.dataStore.addChapter(this.chapterData);
-    this.navCtrl.popToRoot().then(() => {
-      this.navCtrl.push(ReviewChapterPage, {chapterData:this.chapterData, addedChapter:true});
-    });
+    if(this.addMode) {
+      this.dataStore.addChapter(this.chapterData);
+      this.navCtrl.popToRoot().then(() => {
+        this.navCtrl.push(ReviewChapterPage, {chapterData:this.chapterData, addedChapter:true});
+      });
+    } else {
+      this.navCtrl.popToRoot();
+    }
   }
 
   addPhotos() {

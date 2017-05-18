@@ -10,6 +10,7 @@ export class ChapterData {
     eventType:string = 'regular'; //options: 'regular', 'setback', 'moment', 'milestone'. Probably 'start' and 'finish' eventually.
     title:string = null;
     isImportant:boolean = false;
+    isPublic:boolean = true;
     photos:PhotoData[] = null;
     run:RunningData = null;
     textDescription:string = null;
@@ -106,6 +107,10 @@ export class ChapterData {
 
     setImportance(importance:boolean) {
         this.isImportant = importance;
+    }
+
+    setPublic(isPublic:boolean) {
+        this.isPublic = isPublic;
     }
 
     //TODO: design the code betterer so I don't have to include an if statement in places like these.

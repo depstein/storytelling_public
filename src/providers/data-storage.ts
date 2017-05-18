@@ -64,6 +64,21 @@ export class DataStorage {
     DataStorage.chapterArrayDirty = true;
   }
 
+  deleteChapter(chapter:ChapterData) {
+    delete DataStorage.chapterIds[chapter.id];
+
+    if(chapter.photos) {
+      chapter.photos.forEach((photo) => {
+        DataStorage.photoIds[photo.id] = false;
+      });
+    }
+    if(chapter.run) {
+      DataStorage.runIds[chapter.run.id] = false;
+    }
+
+    DataStorage.chapterArrayDirty = true;
+  }
+
   public preloadRunning(runs:RunningData[]) {
     //TODO: Super ad-hoc. Consider formalizing this process.
     var chapter1 = new ChapterData('running');
