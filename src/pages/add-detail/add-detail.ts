@@ -27,6 +27,8 @@ export class AddDetailPage {
   distance:string = null;
   duration:number = null;
   workTime:number = null;
+  temperature:number = null;
+  weather_icon:string = null;
 
   params:any = {};
 
@@ -38,6 +40,21 @@ export class AddDetailPage {
     if(this.chapterData.chapterType == 'running' && this.chapterData.run) {
       this.distance = this.chapterData.run.distanceStr;
       this.duration = this.chapterData.run.durationReadable;
+      this.temperature = this.chapterData.run.temperature;
+      this.weather_icon = this.chapterData.run.weather_icon;
+      //Trim down the icons somewhat... there's way too many!
+      switch(this.weather_icon) {
+        case 'wind':
+        case 'fog':
+        this.weather_icon = 'cloudy';
+        break;
+        case 'sleet':
+        this.weather_icon = 'snow';
+        case 'clear-night':
+        case 'partly-coudy-night':
+        this.weather_icon = this.weather_icon.replace('night', 'day');
+        break;
+      }
     }
     this.params = {chapterData: this.chapterData};
   }
@@ -57,6 +74,12 @@ export class AddDetailPage {
     }
     if(this.duration != null) {
       this.chapterData.run.addDuration(this.duration * 60);
+    }
+    if(this.temperature != null) {
+      this.chapterData.run.addTemperature(this.temperature);
+    }
+    if(this.weather_icon != null) {
+      this.chapterData.run.addWeatherIcon(this.weather_icon);
     }
     if(this.workTime != null) {
       this.chapterData.addMinutesWorked(this.workTime);

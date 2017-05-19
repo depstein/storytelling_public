@@ -13,6 +13,8 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class DataStorage {
+  //Constant: should we be getting things from the webserver at all?
+  static useWebserver:boolean = true;
   //TODO: move this to the cloud!
   //When the cloud move is done, visit which of these should be asynchronous and which can be synchronous.
   static chapters:ChapterData[] = null;
@@ -25,34 +27,26 @@ export class DataStorage {
   private static loggedIn:boolean = false;
 
   constructor(public http: Http) {
-    if(!DataStorage.loggedIn) {
-      this.http.get(DataStorage.webserver + '/accounts', new RequestOptions({withCredentials: true})).subscribe(res => {
-        if(res.json()['accounts'].includes(DataStorage.weblogin['account'])) {
-          //Log in!
-          this.http.post(DataStorage.webserver + '/login', DataStorage.weblogin, new RequestOptions({withCredentials: true})).subscribe(res => {
-            DataStorage.loggedIn = true;
-            console.log('Logged in to the webserver');
-          });
-        } else {
-          //Make the account and log in
-          this.http.post(DataStorage.webserver + '/accounts', DataStorage.weblogin, new RequestOptions({withCredentials: true})).subscribe(res => {
+    if(DataStorage.useWebserver) {
+      if(!DataStorage.loggedIn) {
+        this.http.get(DataStorage.webserver + '/accounts', new RequestOptions({withCredentials: true})).subscribe(res => {
+          if(res.json()['accounts'].includes(DataStorage.weblogin['account'])) {
+            //Log in!
             this.http.post(DataStorage.webserver + '/login', DataStorage.weblogin, new RequestOptions({withCredentials: true})).subscribe(res => {
-                DataStorage.loggedIn = true;
-                console.log('Logged in to the webserver');
+              DataStorage.loggedIn = true;
+              console.log('Logged in to the webserver');
             });
-          });
-        }
-      });
-    }
-  }
-
-  serverCall(requestType, url, callback, body?) {
-    switch(requestType) {
-      case 'get':
-      this.http.get(DataStorage.webserver + url, new RequestOptions({withCredentials: true})).subscribe(callback());
-      break;
-      case 'post':
-      break;
+          } else {
+            //Make the account and log in
+            this.http.post(DataStorage.webserver + '/accounts', DataStorage.weblogin, new RequestOptions({withCredentials: true})).subscribe(res => {
+              this.http.post(DataStorage.webserver + '/login', DataStorage.weblogin, new RequestOptions({withCredentials: true})).subscribe(res => {
+                  DataStorage.loggedIn = true;
+                  console.log('Logged in to the webserver');
+              });
+            });
+          }
+        });
+      }
     }
   }
 

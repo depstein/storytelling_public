@@ -13,14 +13,13 @@ import { DataStorage } from './data-storage';
 */
 @Injectable()
 export class StravaRuns {
-  loadRunsFromServer:boolean = true;
   private static stravaTokenSet:boolean = false;
 
   //TODO: should this be static?
   runningData:RunningData[] = [];
 
   constructor(private platform : Platform, private http:Http) {
-    if(!StravaRuns.stravaTokenSet) {
+    if(DataStorage.useWebserver && !StravaRuns.stravaTokenSet) {
       //If there's no access token, set it based on our default.
       //TODO don't keep the access token in a file...
       this.http.get(DataStorage.webserver + '/storytelling_strava/access_token/' + DataStorage.weblogin['account'], new RequestOptions({withCredentials: true})).subscribe(res => {
@@ -35,16 +34,16 @@ export class StravaRuns {
     }
   }
 
-  private runDatumFromRun(id:string, timestamp:any, distance:number, map_polyline:string, duration:number) {
-    var runDatum = new RunningData(id);
-    runDatum.addRun(timestamp, distance, map_polyline, duration);
+  private runDatumFromRun(runData:{}) {
+    var runDatum = new RunningData(runData['id']);
+    runDatum.addRun(runData);
     return runDatum;
   }
 
   private parseRunsFromJson(runLogs):RunningData[] {
     var runs:RunningData[] = [];
     for(var i=0;i<runLogs.length;i++) {
-      runs.push(this.runDatumFromRun(runLogs[i]['id'], runLogs[i]['timestamp'], runLogs[i]['distance'], runLogs[i]['map_polyline'], runLogs[i]['duration']));
+      runs.push(this.runDatumFromRun(runLogs[i]));
     }
     return runs;
   }
@@ -69,19 +68,16 @@ export class StravaRuns {
 
   getRuns() {
     return new Promise((resolve, reject) => {
-      if(this.runningData.length != 0) {
-        resolve(this.runningData);
-      }
-
-      //TODO: probably switch this to if(cordova)
-      //TODO: better handling if this fails horribly.
-      if(this.loadRunsFromServer) {
+      if(DataStorage.useWebserver) {
         this.http.get(DataStorage.webserver + '/storytelling_strava/runs/' + DataStorage.weblogin['account'], new RequestOptions({withCredentials: true})).subscribe(res => {
           this.runningData = this.parseRunsFromJson(res.json()['runs']);
           resolve(this.runningData);
         });
       }
       else {
+        if(this.runningData.length != 0) {
+          resolve(this.runningData);
+        }
         this.generateFakeRuns().then((runs:RunningData[]) => {
             this.runningData = runs;
             resolve(this.runningData);

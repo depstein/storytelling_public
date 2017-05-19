@@ -62,6 +62,29 @@
     <ion-label color="primary" fixed>Time (min)</ion-label>
     <ion-input type="number" [(ngModel)]="duration"></ion-input>
   </ion-item>
+  <ion-item *ngIf="chapterData.chapterType == 'running'">
+    <ion-label color="primary" fixed>Temp (°F)</ion-label>
+    <ion-input type="number" [(ngModel)]="temperature"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="chapterData.chapterType == 'running'">
+    <ion-segment [(ngModel)]="weather_icon">
+      <ion-segment-button value="clear-day">
+        <ion-icon name="sunny"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="partly-cloudy-day">
+        <ion-icon name="partly-sunny"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="cloudy">
+        <ion-icon name="cloudy"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="rain">
+        <ion-icon name="rainy"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="snow">
+        <ion-icon name="snow"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-item>
   <ion-item *ngIf="chapterData.chapterType == 'diy'">
     <ion-label color="primary" fixed>Mins Worked</ion-label>
     <ion-input type="number" [(ngModel)]="worktime"></ion-input>

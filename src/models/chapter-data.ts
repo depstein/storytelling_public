@@ -108,6 +108,8 @@ export class ChapterData {
 
     addRun(run:RunningData) {
         this.run = run;
+        this.title = this.run.title;
+        this.textDescription = this.run.description;
         this._timestamp = this.run.timestamp;
     }
 
