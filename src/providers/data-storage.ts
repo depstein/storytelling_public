@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, RequestOptions } from '@angular/http';
 import { ChapterData } from '../models/chapter-data';
 import { PhotoData } from '../models/photo-data';
 import { RunningData } from '../models/running-data';
@@ -20,8 +20,40 @@ export class DataStorage {
   static chapterIds:{} = {};
   static photoIds:{} = {};
   static runIds:{} = {};
+  static webserver:string = 'http://localhost:8080';
+  static weblogin:{} = {account:'test', password:'fitbit1111'};
+  private static loggedIn:boolean = false;
 
   constructor(public http: Http) {
+    if(!DataStorage.loggedIn) {
+      this.http.get(DataStorage.webserver + '/accounts', new RequestOptions({withCredentials: true})).subscribe(res => {
+        if(res.json()['accounts'].includes(DataStorage.weblogin['account'])) {
+          //Log in!
+          this.http.post(DataStorage.webserver + '/login', DataStorage.weblogin, new RequestOptions({withCredentials: true})).subscribe(res => {
+            DataStorage.loggedIn = true;
+            console.log('Logged in to the webserver');
+          });
+        } else {
+          //Make the account and log in
+          this.http.post(DataStorage.webserver + '/accounts', DataStorage.weblogin, new RequestOptions({withCredentials: true})).subscribe(res => {
+            this.http.post(DataStorage.webserver + '/login', DataStorage.weblogin, new RequestOptions({withCredentials: true})).subscribe(res => {
+                DataStorage.loggedIn = true;
+                console.log('Logged in to the webserver');
+            });
+          });
+        }
+      });
+    }
+  }
+
+  serverCall(requestType, url, callback, body?) {
+    switch(requestType) {
+      case 'get':
+      this.http.get(DataStorage.webserver + url, new RequestOptions({withCredentials: true})).subscribe(callback());
+      break;
+      case 'post':
+      break;
+    }
   }
 
   getAllChapters() {

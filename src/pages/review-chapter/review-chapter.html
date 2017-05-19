@@ -16,13 +16,13 @@
 
 <ion-content>
     <!--use slides if there's more than one picture-->
-    <ion-slides *ngIf="chapterData.pictureURLs != null && chapterData.pictureURLs.length > 1" pager>
-      <ion-slide *ngFor="let url of chapterData.pictureURLs">
+    <ion-slides *ngIf="chapterData.reviewPictureURLs != null && chapterData.reviewPictureURLs.length > 1" pager>
+      <ion-slide *ngFor="let url of chapterData.reviewPictureURLs">
         <img [src]="url | cdvphotolibrary">
       </ion-slide>
     </ion-slides>
     <!--if there's only one picture, display it-->
-    <img  *ngIf="chapterData.pictureURLs != null && chapterData.pictureURLs.length == 1" [src]="chapterData.pictureURLs[0] | cdvphotolibrary">
+    <img  *ngIf="chapterData.reviewPictureURLs != null && chapterData.reviewPictureURLs.length == 1" [src]="chapterData.reviewPictureURLs[0] | cdvphotolibrary">
     <ion-item text-wrap *ngIf="chapterData.textDescription != null">
       {{chapterData.textDescription}}
     </ion-item>

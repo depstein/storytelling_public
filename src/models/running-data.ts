@@ -4,7 +4,7 @@ import * as polyline from '@mapbox/polyline';
 declare var mapboxgl;
 
 export class RunningData {
-  timestamp:any = moment();
+  private _timestamp:any = moment();
   id:string = null;
   distance:number = null;
   map_polyline:string = null;
@@ -15,7 +15,8 @@ export class RunningData {
   coordinates:any = null;
   bounds:any = null;
   map:any = null;
-  staticMapUrl:string = null;
+  staticMapThumb:string = null;
+  staticMapFull:string = null;
 
   public static decodePolyline(map_polyline:string) {
     //For reasons I can't explain, latitude and longitude are flipped.
@@ -28,15 +29,22 @@ export class RunningData {
   }
   
   addRun(timestamp:any, distance:number, map_polyline:string, duration:number) {
-    this.timestamp = moment(timestamp);
+    this._timestamp = moment(timestamp);
     this.distance = distance;
     this.map_polyline = map_polyline;
     this.coordinates = RunningData.decodePolyline(map_polyline);
     this.duration = duration;
     var paceFractional = (this.duration / 60.0) / this.distance;
     this.pace = Math.floor(paceFractional) + ":" + Math.floor((paceFractional % 1) * 60);
-    this.staticMapUrl = "https://api.mapbox.com/styles/v1/mapbox/streets-v9/static/path-5+f44-0.5+f44-0.2(" + encodeURIComponent(this.map_polyline) + ")/auto/100x100?access_token=pk.eyJ1IjoiZGVwc3RlaW4iLCJhIjoiY2owMWpnOXN5MDF1OTMycW52bGg1bnludyJ9.ss9hA0RVl_2P9UuOtMLZvQ";
+    //TODO: again, bad news including the access token.
+    this.staticMapThumb = "https://api.mapbox.com/styles/v1/mapbox/streets-v9/static/path-5+f44-1+f44-0(" + encodeURIComponent(this.map_polyline) + ")/auto/100x100?access_token=pk.eyJ1IjoiZGVwc3RlaW4iLCJhIjoiY2owMWpnOXN5MDF1OTMycW52bGg1bnludyJ9.ss9hA0RVl_2P9UuOtMLZvQ";
+    this.staticMapFull = "https://api.mapbox.com/styles/v1/mapbox/streets-v9/static/path-5+f44-1+f44-0(" + encodeURIComponent(this.map_polyline) + ")/auto/600x250@2x?access_token=pk.eyJ1IjoiZGVwc3RlaW4iLCJhIjoiY2owMWpnOXN5MDF1OTMycW52bGg1bnludyJ9.ss9hA0RVl_2P9UuOtMLZvQ";
   }
+
+  // Return a copy so nothing alterts the internal time.
+    get timestamp() {
+        return moment(this._timestamp);
+    }
 
   addDistance(distance:number) {
     this.distance = distance;

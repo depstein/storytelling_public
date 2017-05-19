@@ -41,7 +41,7 @@ export class ChapterData {
         return (this.minutesWorked/60.0).toFixed(1);
     }
 
-    get pictureURLs() {
+    get cardPictureURLs() {
         let photoUrls:string[] = null;
         if(this.photos) {
             photoUrls = this.photos.map((photo) => {return photo.pictureURL});
@@ -51,7 +51,27 @@ export class ChapterData {
                 photoUrls = [];
             }
             if(this.run) {
-                photoUrls.unshift(this.run.staticMapUrl);
+                if(this.isImportant) {
+                    photoUrls.unshift(this.run.staticMapFull);
+                } else {
+                    photoUrls.unshift(this.run.staticMapThumb);
+                }
+            }
+        }
+        return photoUrls;
+    }
+
+    get reviewPictureURLs() {
+        let photoUrls:string[] = null;
+        if(this.photos) {
+            photoUrls = this.photos.map((photo) => {return photo.pictureURL});
+        }
+        if(this.chapterType == 'running') {
+            if(!this.photos) {
+                photoUrls = [];
+            }
+            if(this.run) {
+                photoUrls.unshift(this.run.staticMapFull);
             }
         }
         return photoUrls;
@@ -137,7 +157,7 @@ export class ChapterData {
             return this.photos.map((photo:PhotoData) => {return photo.pictureURL;});
         }
         else {
-            return this.run.staticMapUrl;
+            return this.run.staticMapFull;
         }
     }
 

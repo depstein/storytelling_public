@@ -17,16 +17,16 @@
   </ion-item>
   <ion-item>
     <!--use slides if it's an important chapter and there's more than one picture-->
-    <ion-slides *ngIf="chapterData.pictureURLs != null && chapterData.isImportant && chapterData.pictureURLs.length > 1" pager>
-      <ion-slide *ngFor="let url of chapterData.pictureURLs">
+    <ion-slides *ngIf="chapterData.cardPictureURLs != null && chapterData.isImportant && chapterData.cardPictureURLs.length > 1" pager>
+      <ion-slide *ngFor="let url of chapterData.cardPictureURLs">
         <img [src]="url | cdvphotolibrary">
       </ion-slide>
     </ion-slides>
     <!--if this chapter is important, but there's only one image, display it-->
-    <img  *ngIf="chapterData.pictureURLs != null && chapterData.isImportant && chapterData.pictureURLs.length == 1" [src]="chapterData.pictureURLs[0] | cdvphotolibrary">
+    <img  *ngIf="chapterData.cardPictureURLs != null && chapterData.isImportant && chapterData.cardPictureURLs.length == 1" [src]="chapterData.cardPictureURLs[0] | cdvphotolibrary">
     <!--if the chapter isn't important, display any image as a thumbnail-->
-    <ion-thumbnail *ngIf="chapterData.pictureURLs != null && chapterData.pictureURLs.length > 0 && !chapterData.isImportant" item-left>
-      <img [src]="chapterData.pictureURLs[0] | cdvphotolibrary">
+    <ion-thumbnail *ngIf="chapterData.cardPictureURLs != null && chapterData.cardPictureURLs.length > 0 && !chapterData.isImportant" item-left>
+      <img [src]="chapterData.cardPictureURLs[0] | cdvphotolibrary">
     </ion-thumbnail>
     <div *ngIf="chapterData.title != null" class="left title">
       {{chapterData.title}}

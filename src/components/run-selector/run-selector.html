@@ -4,7 +4,7 @@ Pick a run, or click "next" to log without a run.
   <button ion-item *virtualItem="let item" (click)="selectedRun(item.id)" [disabled]="isDisabled(item.id)">
     <ion-thumbnail item-right>
       <!--This should supposedly be an ion-img. I couldn't get it to load... so hopefully this doesn't come back to bite me later.-->
-      <img [src]="item.staticMapUrl">
+      <img [src]="item.staticMapThumb">
     </ion-thumbnail>
     <ion-label>
       {{item.timestampStr}}
