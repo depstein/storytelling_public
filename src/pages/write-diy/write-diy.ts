@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import { NavController, NavParams, Platform, LoadingController } from 'ionic-angular';
 import { LocalPhotos } from '../../providers/local-photos';
 import { PhotoSelectorComponent } from '../../components/photo-selector/photo-selector';
 import { AddDetailPage } from '../add-detail/add-detail';
@@ -25,11 +25,17 @@ export class WriteDiyPage {
   pictureIdsSelected: any = {};
   public static preloadFakeData:boolean = true;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public platform:Platform, private photos : LocalPhotos, private dataStore:DataStorage) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public platform:Platform, private loadingCtrl:LoadingController, private photos : LocalPhotos, private dataStore:DataStorage) {}
 
   ionViewDidLoad() {
     this.platform.ready().then(() => {
+      let loading = this.loadingCtrl.create({
+        content: 'Loading photos, please wait...'
+      });
+
+      loading.present();
       this.photos.getPhotos().then((photos:PhotoData[]) => {
+        loading.dismiss();
         this.allImages = photos;
         if(WriteDiyPage.preloadFakeData) {
           this.dataStore.preloadDiy(this.allImages);
