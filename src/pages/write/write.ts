@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { WriteRunningPage } from '../write-running/write-running';
 import { WriteDiyPage } from '../write-diy/write-diy';
-import { AddDetailPage } from '../add-detail/add-detail';
 import { UserData } from '../../providers/user-data';
-import { ChapterData } from '../../models/chapter-data';
 
 /*
   Generated class for the Write page.

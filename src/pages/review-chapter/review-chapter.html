@@ -16,7 +16,7 @@
 
 <ion-content>
     <!--use slides if there's more than one picture-->
-    <ion-slides *ngIf="chapterData.reviewPictureURLs != null && chapterData.reviewPictureURLs.length > 1" pager>
+    <ion-slides *ngIf="chapterData.reviewPictureURLs != null && chapterData.reviewPictureURLs.length > 1" pager class="fixedHeight">
       <ion-slide *ngFor="let url of chapterData.reviewPictureURLs">
         <img [src]="url | cdvphotolibrary">
       </ion-slide>

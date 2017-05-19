@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { ChapterData } from '../../models/chapter-data';
-import { AddExpensesPage } from '../add-expenses/add-expenses';
-import { AddEmotionPage } from '../add-emotion/add-emotion';
-import { AddPacePage } from '../add-pace/add-pace';
 import { AddPhotosPage } from '../add-photos/add-photos';
 import { ReviewChapterPage } from '../review-chapter/review-chapter';
 import { DataStorage } from '../../providers/data-storage';

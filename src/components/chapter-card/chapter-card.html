@@ -17,7 +17,7 @@
   </ion-item>
   <ion-item>
     <!--use slides if it's an important chapter and there's more than one picture-->
-    <ion-slides *ngIf="chapterData.cardPictureURLs != null && chapterData.isImportant && chapterData.cardPictureURLs.length > 1" pager>
+    <ion-slides *ngIf="chapterData.cardPictureURLs != null && chapterData.isImportant && chapterData.cardPictureURLs.length > 1" (ionSlideWillChange)="onSlideWillChange()" (ionSlideDidChange)="onSlideDidChange()" pager>
       <ion-slide *ngFor="let url of chapterData.cardPictureURLs">
         <img [src]="url | cdvphotolibrary">
       </ion-slide>

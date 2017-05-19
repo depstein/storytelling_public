@@ -19,6 +19,7 @@ import { DataStorage } from '../../providers/data-storage';
 export class ChapterCardComponent {
   @Input() chapterData: ChapterData;
   actionSheetVisible:boolean = false;
+  slidingPictures:boolean = false;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private platform : Platform, private actionSheetCtrl:ActionSheetController, private alertCtrl:AlertController, private dataStore:DataStorage) {
@@ -26,9 +27,17 @@ export class ChapterCardComponent {
 
   reviewChapter() {
     //This feels like a hack, but it seems to work in practice. I'll take it :-)
-    if(!this.actionSheetVisible) {
+    if(!this.actionSheetVisible && !this.slidingPictures) {
       this.navCtrl.push(ReviewChapterPage, {chapterData:this.chapterData, addedChapter:false});
     }
+  }
+
+  onSlideWillChange() {
+    this.slidingPictures = true;
+  }
+
+  onSlideDidChange() {
+    this.slidingPictures = false;
   }
 
   showActionSheet() {

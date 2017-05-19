@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, NavParams, Platform, ToastController } from 'ionic-angular';
 import { ChapterData } from '../../models/chapter-data';
 import { SocialSharing } from '@ionic-native/social-sharing';
