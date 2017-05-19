@@ -1,9 +1,8 @@
 <!-- Generated template for the RunSelectorComponent component -->
 Pick a run, or click "next" to log without a run.
-<ion-list radio-group [virtualScroll]="allRuns" approxItemHeight="100px">
-  <button ion-item *virtualItem="let item" (click)="selectedRun(item.id)" [disabled]="isDisabled(item.id)">
+<ion-list radio-group>
+  <button ion-item *ngFor="let item of allRuns" (click)="selectedRun(item.id)" [disabled]="isDisabled(item.id)">
     <ion-thumbnail item-right>
-      <!--This should supposedly be an ion-img. I couldn't get it to load... so hopefully this doesn't come back to bite me later.-->
       <img [src]="item.staticMapThumb">
     </ion-thumbnail>
     <ion-label>

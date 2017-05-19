@@ -4,10 +4,8 @@
   See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
   for more info on Angular 2 Components.
 -->
-Select picture(s) to add to your chapter.
-<!--I need to include some text for some reason, else the selector doesn't load. I have no idea why, it makes no sense to me.-->
-<ion-list [virtualScroll]="allImages" approxItemHeight="100px">
-  <ion-item *virtualItem="let item" style="height:100px">
+<ion-list>
+  <ion-item *ngFor="let item of allImages">
     <ion-thumbnail item-right>
       <!--This should supposedly be an ion-img. I couldn't get it to load... so hopefully this doesn't come back to bite me later.-->
       <img [src]="item.pictureURL | cdvphotolibrary">
